@@ -1,6 +1,7 @@
 const express = require('express');
 const router = require('./routes/routes');
 const dotenv = require('dotenv');
+const cors = require('cors');
 
 
 // Load environment variables (if using .env)
@@ -11,8 +12,11 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware to parse JSON data
 app.use(express.json());
+//communicate with frontend
+app.use(cors());
 
 app.use(router);
+
 
 
 app.listen(PORT, () => {
@@ -20,8 +24,3 @@ app.listen(PORT, () => {
 });
 
 module.exports = app
-
-//use cors to commmunicate with front end
-//app.use(cors())
-//still have to download cors
-//what is cors????

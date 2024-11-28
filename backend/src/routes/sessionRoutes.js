@@ -38,7 +38,7 @@ async function sessionRoutes(router){
 
             //create token if credentials are valid
             const token = jwt.sign(
-                { userId: users.userId, email: users.email },
+                { id: users.id, email: users.email },
                 process.env.JWT_SECRET,
                 { expiresIn: '1h' }
             );

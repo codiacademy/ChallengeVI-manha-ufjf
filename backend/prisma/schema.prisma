@@ -8,20 +8,32 @@ datasource db {
 }
 
 model products {
-  id          Int     @id @unique(map: "sqlite_autoindex_products_1") @default(autoincrement())
-  name        String  @unique(map: "sqlite_autoindex_products_2")
-  description String
-  price       Float
-  imageURL    String?
-  category    String
+  id           Int            @id @unique(map: "sqlite_autoindex_products_1") @default(autoincrement())
+  name         String         @unique(map: "sqlite_autoindex_products_2")
+  description  String
+  price        Float
+  imageURL     String?
+  category     String
+  shoppingCart shoppingCart[]
 }
 
 model users {
-  userId        Int       @id @unique(map: "sqlite_autoindex_users_1") @default(autoincrement())
-  email         String    @unique(map: "sqlite_autoindex_users_2")
-  password      String
-  firstName     String
-  lastName      String
-  phone         String?
-  createdAt     DateTime? @default(now())
+  id           Int            @id @unique(map: "sqlite_autoindex_users_1") @default(autoincrement())
+  email        String         @unique(map: "sqlite_autoindex_users_2")
+  password     String
+  firstName    String
+  lastName     String
+  phone        String?
+  createdAt    DateTime?      @default(now())
+  shoppingCart shoppingCart[]
+}
+
+model shoppingCart {
+  id        Int    @id @unique @default(autoincrement())
+  userId    Int
+  productId Int
+  category  String
+
+  user    users    @relation(fields: [userId], references: [id])
+  product products @relation(fields: [productId], references: [id])
 }

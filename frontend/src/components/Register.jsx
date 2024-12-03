@@ -11,7 +11,7 @@ function Register({ isOpen, onClose, switchToLogin }) {
           <label className="block text-btnPink ">Primeiro Nome</label>
           <input
             type="text"
-            placeholder="Digite seu nome"
+            placeholder="Digite seu primero nome"
             className="w-full px-3 py-2 bg-transparent text-white focus:outline-none"
           />
         </div>
@@ -20,19 +20,23 @@ function Register({ isOpen, onClose, switchToLogin }) {
           <label className="block text-btnPink ">Ultimo Nome</label>
           <input
             type="text"
-            placeholder="Digite seu nome"
+            placeholder="Digite seu ultimo nome"
             className="w-full px-3 py-2 bg-transparent text-white focus:outline-none"
           />
         </div>
         <div className="mb-4 flex items-center border-b border-btnPink">
           <PhoneIcon className="h-5 w-5 text-btnPink mr-2" />
-          <label className="block text-btnPink ">Telefone</label>
+          <label htmlFor="phone" className="block text-btnPink">
+            Telefone
+          </label>
           <input
-            type="text"
-            placeholder="Digite seu nome"
+            placeholder="+55 32 99999-9999 (Opcional)"
             className="w-full px-3 py-2 bg-transparent text-white focus:outline-none"
+            pattern="\+?[0-9\s\-]*"
           />
         </div>
+
+        
         <div className="mb-4 flex items-center border-b border-btnPink">
           <UserIcon className="h-5 w-5 text-btnPink mr-2" />
           <label className="block text-btnPink">Email</label>

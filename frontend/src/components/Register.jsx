@@ -1,5 +1,5 @@
 import Modal from "./Modal";
-import { UserIcon, LockClosedIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
+import { UserIcon, LockClosedIcon, PencilSquareIcon, PhoneIcon } from "@heroicons/react/24/outline";
 
 function Register({ isOpen, onClose, switchToLogin }) {
   return (
@@ -8,7 +8,25 @@ function Register({ isOpen, onClose, switchToLogin }) {
       <form>
         <div className="mb-4 flex items-center border-b border-btnPink">
           <PencilSquareIcon className="h-5 w-5 text-btnPink mr-2" />
-          <label className="block text-btnPink">Nome</label>
+          <label className="block text-btnPink ">Primeiro Nome</label>
+          <input
+            type="text"
+            placeholder="Digite seu nome"
+            className="w-full px-3 py-2 bg-transparent text-white focus:outline-none"
+          />
+        </div>
+        <div className="mb-4 flex items-center border-b border-btnPink">
+          <PencilSquareIcon className="h-5 w-5 text-btnPink mr-2" />
+          <label className="block text-btnPink ">Ultimo Nome</label>
+          <input
+            type="text"
+            placeholder="Digite seu nome"
+            className="w-full px-3 py-2 bg-transparent text-white focus:outline-none"
+          />
+        </div>
+        <div className="mb-4 flex items-center border-b border-btnPink">
+          <PhoneIcon className="h-5 w-5 text-btnPink mr-2" />
+          <label className="block text-btnPink ">Telefone</label>
           <input
             type="text"
             placeholder="Digite seu nome"

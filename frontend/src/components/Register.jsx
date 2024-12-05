@@ -1,7 +1,9 @@
 import { useState } from "react"; // Importa o hook useState para gerenciar o estado local do componente
 import Modal from "./Modal"; // Importa o componente Modal personalizado
-import { UserIcon, LockClosedIcon, PencilSquareIcon, PhoneIcon } from "@heroicons/react/24/outline"; 
-// Importa ícones da biblioteca Heroicons para melhorar a interface visual
+import { UserIcon, LockClosedIcon, PencilSquareIcon, PhoneIcon } from "@heroicons/react/24/outline";  // Importa ícones da biblioteca Heroicons para melhorar a interface visual
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
+import api from '../server/api'
 
 // Função principal do componente Register
 function Register({ isOpen, onClose, switchToLogin }) {
@@ -23,32 +25,73 @@ function Register({ isOpen, onClose, switchToLogin }) {
   // Função para lidar com o envio do formulário
   const handleSubmit = async (e) => {
     e.preventDefault(); // Previne o comportamento padrão de recarregar a página
+    const {
+      firstName, // Nome do usuário
+      lastName,  // Sobrenome do usuário
+      email,  // Email do usuário
+      password, // Senha do usuário
+      phone 
+    } = formData
 
     try {
       // Envia uma requisição POST para o backend
-      const response = await fetch("http://localhost:3000/register", {
-        method: "POST", // Método HTTP utilizado
-        headers: {
-          "Content-Type": "application/json", // Indica que o corpo da requisição está em JSON
-        },
-        body: JSON.stringify(formData), // Converte os dados do formulário para JSON e os envia no corpo da requisição
-      });
+      const response = await api.post('/register', {
+        firstName, // Nome do usuário
+        lastName,  // Sobrenome do usuário
+        email,  // Email do usuário
+        password, // Senha do usuário
+        phone 
+      })
 
-      const result = await response.json(); // Extrai a resposta do servidor em formato JSON
-      if (response.ok) { // Verifica se a requisição foi bem-sucedida
-        alert("Usuário registrado com sucesso!"); // Exibe mensagem de sucesso
-        onClose(); // Fecha o modal chamando a função passada por props
-      } else {
-        alert(result.message || "Erro ao registrar o usuário"); // Exibe mensagem de erro vinda do backend (ou uma genérica)
+       // Verifica a resposta da API
+       if (response.status === 201) {
+        // Sucesso, pode exibir uma mensagem ou redirecionar
+        
+        toast.success('Usuario cadastrado com sucesso!', {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+         
+          });
+        onClose(); // Fecha o modal após o registro bem-sucedido
       }
     } catch (error) {
-      console.error("Erro ao enviar dados:", error); // Exibe erros no console para depuração
-      alert("Ocorreu um erro ao registrar. Tente novamente."); // Mensagem de erro genérica para o usuário
+      // Em caso de erro, exibe uma mensagem de erro
+      console.error('Erro no registro:', error);
+      toast.error('Erro ao cadastrar usuário!', {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });;
     }
   };
 
   // Retorna a estrutura do modal contendo o formulário
   return (
+    <>
+    <ToastContainer
+      position="bottom-right"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="light"
+     
+    />
     <Modal isOpen={isOpen} onClose={onClose}>
       {/* Título do formulário */}
       <h2 className="text-2xl font-bold mb-4 text-btnPink">Registre-se</h2>
@@ -142,8 +185,9 @@ function Register({ isOpen, onClose, switchToLogin }) {
           Faça login
         </button>
       </p>
-    </Modal>
+    </Modal></>
   );
 }
+
 
 export default Register; // Exporta o componente para ser usado em outros lugares

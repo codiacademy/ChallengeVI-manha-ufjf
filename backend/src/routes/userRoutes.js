@@ -66,6 +66,27 @@ async function userRoutes(router) {
                 res.status(500).json({ message: 'Error fetching user' });
             }
         });
+
+        router.get('/user', async (req, res) => {
+            const { id } = req.params;
+    
+            try {
+                // Buscar usuário pelo ID
+                const user = await prisma.users.findMany();
+    
+                if (!user) {
+                    return res.status(404).json({ message: 'User not found' });
+                }
+    
+                // Excluir a senha para não expor
+                const { password, ...userData } = user;
+    
+                res.status(200).json(userData);
+            } catch (error) {
+                console.error(error);
+                res.status(500).json({ message: 'Error fetching user' });
+            }
+        });
 }
 
 module.exports = userRoutes;

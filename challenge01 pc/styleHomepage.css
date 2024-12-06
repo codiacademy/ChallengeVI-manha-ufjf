@@ -1,0 +1,274 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* engloba todo o codigo*/
+body {
+    width: 100%;
+    height: 100%;
+    font-family: "Inter", serif;
+    font-weight: 200px;
+    font-style: regular;
+    font-optical-sizing: auto;
+    background-color: #FFFFFF;
+    overflow-x: hidden;
+}
+
+.container {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    max-width: 100%;
+}
+
+.container .conteudo {
+    flex: 1;
+    min-height: 1500px;
+    background-color: #FFFFFF;
+    width: 100%;
+    max-width: 100%;
+}
+
+/* INICIO DO HEADER */
+
+/* fundo header*/
+.container .headerHomepage {
+    background-color: #121213;
+    width: 100%;
+    height: 65px;
+    display: flex;
+    padding: 5px 15px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* PARTE ESQUERDA DO HEADER */
+
+.container .headerHomepage .iconesLeft {
+    display: flex;
+    gap: 30px;
+}
+
+.container .headerHomepage .iconesLeft .iconeCodi {
+    z-index: 1;
+    height: 75px;
+    width: 75px;
+    padding: 3px;
+    margin-left: 5px;
+    cursor: pointer;
+
+}
+
+.container .headerHomepage .iconesLeft .pesquisarLocal {
+    margin-top: 7px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1px;
+}
+
+.container .headerHomepage .inputBuscarProdutos {
+    padding: 7px;
+    margin-right: 10px;
+    height: 30px;
+    margin-top: 10px;
+    border: 1px solid #FFFFFF;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    width: 550px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    box-shadow: 2px 2px 3px rgb(74, 2, 107);
+}
+
+.container .headerHomepage .botaoPesquisar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+    padding-left: 7px;
+    padding-top: 5px;
+    background-color: #121213;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #2E0660;
+    width: 40px;
+    height: 30px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    margin-left: -1px;
+}
+
+.botaoPesquisar img.imageBotao01 {
+    width: 25px;
+    height: 25px;
+    margin-bottom: 5px;
+}
+
+/* PARTE DIREITA DO HEADER */
+
+.container .headerHomepage .iconesRight h1 {
+    color: #FFFFFF;
+    font-size: 20px;
+    font-weight: 200;
+    cursor: pointer;
+}
+
+.container .headerHomepage #iconsRight {
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+
+
+.container .headerHomepage .iconesRight {
+    display: flex;
+    gap: 30px
+}
+
+.container .headerHomepage .iconesRight h1 {
+    margin-top: 5px;
+}
+
+/* FIM DO HEADER */
+
+/* INICIO DO FOOTER*/
+
+.container .footerAll {
+    height: 195px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+/* FOOTER SUPERIOR */
+
+.container .footerAll .footerSuperior {
+    background-color: #5C407E;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 150px;
+    padding-right: 20px;
+    width: 100%;
+}
+
+.container .footerAll .footerSuperior h1 {
+    margin-left: 20px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 200;
+}
+
+.container .footerAll .linhaBranca {
+    width: 100%;
+    height: 1px;
+    background-color: #FFFFFF;
+    margin-top: 1px;
+}
+
+
+/* FOOTER INFERIOR */
+
+.container .footerAll .footerInferior {
+    width: 100%;
+    height: 60px;
+    background-color: #8641DA;
+}
+
+.container .footerAll .footerInferior h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 200;
+    padding-top: 20px;
+}
+
+/* FIM DO FOOTER */
+
+/* INICIO DO CONTEUDO */
+
+.container .conteudo .cardGrande {
+    height: 479px;
+    width: 267px;
+    background-color: #EBE4F0;
+    border: 2px solid #2E0660;
+    margin-top: 55px;
+    margin-left: 110px;
+    position: relative;
+
+}
+
+.container .conteudo .cardGrande .iconesCard {
+    position: absolute;
+    top: 7px;
+    right: 5px;
+    display: flex;
+    gap: 5px;
+}
+
+.container .conteudo .cardGrande .iconesCard img {
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.container .conteudo .cardGrande .imagemProduto {
+    height: 150px;
+    width: 240px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    margin-left: 10px;
+}
+
+.container .conteudo .cardGrande .descricaoProduto {
+    height: 70px;
+    width: 250px;
+    margin-top: 20px;
+    margin-left: 5px;
+    padding: 3px;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.container .conteudo .cardGrande .precoProduto {
+    margin-top: 50px;
+    margin-left: 5px;
+    padding: 3px;
+    display: flex;
+    position: relative;
+    top: 20px;
+}
+
+.container .conteudo .cardGrande .botaoAddCarrinho {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    width: 250px;
+    margin-left: 5px;
+    background-color: #2E0660;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+    margin-top: 55px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    border: 1px solid white;
+}
+
+.container .conteudo .cardGrande .botaoAddCarrinho .imageBotao02 {
+    height: 20px;
+    width: 20px;
+    padding-left: 1px;
+}

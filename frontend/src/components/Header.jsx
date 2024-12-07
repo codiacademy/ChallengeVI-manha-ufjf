@@ -11,7 +11,7 @@ import {
   DevicePhoneMobileIcon,
   
 } from "@heroicons/react/24/outline";
-
+import CodiIcon from '../imagens/iconCodi.png'
 import Login from "./Login";
 import Register from "./Register";
 
@@ -33,41 +33,24 @@ function Header() {
   return (
     <>
       <header className="bg-black flex items-center justify-between p-5 text-white">
-      <div className="flex gap-8 items-center">
+      <div className="flex gap-6 items-center">
           <img
-            src='imagens/iconCodig.png'
+            src={CodiIcon}
             alt="Icone do site"
             className="h-12 w-12 cursor-pointer"
           />
-          <div className="flex items-center">
+          <div className="flex items-center ps-12">
             <input
               type="text"
               placeholder="Buscar produtos"
-              className="border border-white rounded-l-md p-2 w-96 focus:outline-none"
+              className="border border-white rounded-l-xl p-2 h-10 w-[550px] focus:outline-none text-black "
             />
-            <button className="bg-purple-800 h-8 w-10 flex items-center justify-center rounded-r-md">
-              <img src="imagens/imageLupa.png" alt="Enviar" className="h-5 w-5" />
+            <button className="bg-purple-800 h-10 w-10 flex items-center justify-center rounded-r-xl">
+              <MagnifyingGlassIcon className="h-5 w-5"/>
+              
             </button>
           </div>
         </div>
-        <div className=" text-white">
-
-          {/* <img
-            src="imagens/imageCarrinho.png"
-            alt="imagem do carrinho"
-            className="h-6 w-6 cursor-pointer"
-          />
-          <img
-            src="imagens/imageFav.png"
-            alt="imagem dos favoritados"
-            className="h-6 w-6 cursor-pointer"
-          />
-          <img
-            src="imagens/iconPerfil.png"
-            alt="imagem do icone de perfil"
-            className="h-6 w-6 cursor-pointer"
-          />*/}
-        </div> 
 
         <div className="md:hidden flex items-center">
           <button onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle Menu">

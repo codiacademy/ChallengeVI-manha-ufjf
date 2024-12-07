@@ -31,6 +31,7 @@ body {
     background-color: #FFFFFF;
     width: 100%;
     max-width: 100%;
+    padding: 0;
 }
 
 /* INICIO DO HEADER */
@@ -197,13 +198,15 @@ body {
 /* INICIO DO CONTEUDO */
 
 .container .conteudo .cardGrande {
-    height: 479px;
+    height: 350px;
     width: 267px;
     background-color: #EBE4F0;
     border: 2px solid #2E0660;
-    margin-top: 55px;
-    margin-left: 110px;
     position: relative;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 30px;
+    margin-right: 20px;
 
 }
 
@@ -216,52 +219,54 @@ body {
 }
 
 .container .conteudo .cardGrande .iconesCard img {
-    height: 30px;
-    width: 30px;
+    height: 20px;
+    width: 20px;
     cursor: pointer;
 }
 
 .container .conteudo .cardGrande .imagemProduto {
     height: 150px;
-    width: 240px;
+    width: 160px;
     align-items: center;
     justify-content: center;
-    margin-top: 40px;
-    margin-left: 10px;
+    margin-top: 20px;
+    margin-left: 50px;
 }
 
 .container .conteudo .cardGrande .descricaoProduto {
-    height: 70px;
+    height: 40px;
     width: 250px;
-    margin-top: 20px;
-    margin-left: 5px;
+    margin-top: 4px;
+    margin-left: 9px;
     padding: 3px;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
+    font-size: 14px;
 }
 
 .container .conteudo .cardGrande .precoProduto {
-    margin-top: 50px;
-    margin-left: 5px;
+    margin-top: 30px;
+    margin-left: 9px;
     padding: 3px;
     display: flex;
     position: relative;
     top: 20px;
+    font-size: 20px;
+    color: #000000;
 }
 
 .container .conteudo .cardGrande .botaoAddCarrinho {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 40px;
+    height: 30px;
     width: 250px;
     margin-left: 5px;
     background-color: #2E0660;
     color: white;
     cursor: pointer;
     font-size: 15px;
-    margin-top: 55px;
+    margin-top: 35px;
     border-radius: 8px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     border: 1px solid white;
@@ -271,4 +276,13 @@ body {
     height: 20px;
     width: 20px;
     padding-left: 1px;
+}
+
+.container .conteudo .space-cards1 {
+    background-color: rgb(194, 194, 194);
+    width: 100%;
+    height: 400px;
+    margin-top: 1000px;
+    display: flex;
+    flex-direction: column;
 }

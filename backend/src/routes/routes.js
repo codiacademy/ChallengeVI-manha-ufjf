@@ -7,6 +7,7 @@ const productsRoutes = require('./productsRoutes')
 userRoutes(router)
 sessionRoutes(router)
 productsRoutes(router)
+shoppingCartRouters(router)
 
 
 // What do I do with this one??

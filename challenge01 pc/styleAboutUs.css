@@ -27,7 +27,7 @@ body {
 
 .container .conteudo {
     flex: 1;
-    min-height: 1500px;
+    min-height: 1200px;
     background-color: #FFFFFF;
     width: 100%;
     max-width: 100%;
@@ -195,154 +195,108 @@ body {
 
 /* FIM DO FOOTER */
 
-/* INICIO DO CONTEUDO */
-
-.container .conteudo .cardGrande {
-    height: 350px;
-    width: 267px;
-    background-color: #EBE4F0;
-    border: 2px solid #2E0660;
-    position: relative;
-    margin-top: auto;
-    margin-bottom: auto;
+/*INICIO DO CONTEUDO*/
+.container .conteudo .inicioForm {
+    font-size: 50px;
+    margin-top: 50px;
     margin-left: 30px;
-    margin-right: 20px;
-
+    color: #3A3A3A;
+    font-weight: 300;
 }
 
-.container .conteudo .cardGrande .iconesCard {
-    position: absolute;
-    top: 7px;
-    right: 5px;
-    display: flex;
-    gap: 5px;
-}
-
-.container .conteudo .cardGrande .iconesCard img {
-    height: 20px;
-    width: 20px;
-    cursor: pointer;
-}
-
-.container .conteudo .cardGrande .imagemProduto {
-    height: 150px;
-    width: 160px;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
-    margin-left: 50px;
-}
-
-.container .conteudo .cardGrande .descricaoProduto {
-    height: 40px;
-    width: 250px;
-    margin-top: 4px;
-    margin-left: 9px;
-    padding: 3px;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-}
-
-.container .conteudo .cardGrande .precoProduto {
-    margin-top: 30px;
-    margin-left: 9px;
-    padding: 3px;
-    display: flex;
-    position: relative;
-    top: 20px;
-    font-size: 20px;
-    color: #000000;
-}
-
-.container .conteudo .cardGrande .botaoAddCarrinho {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 30px;
-    width: 250px;
-    margin-left: 5px;
-    background-color: #2E0660;
-    color: white;
-    cursor: pointer;
-    font-size: 15px;
-    margin-top: 35px;
-    border-radius: 8px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-    border: 1px solid white;
-}
-
-.container .conteudo .cardGrande .botaoAddCarrinho .imageBotao02 {
-    height: 20px;
-    width: 20px;
-    padding-left: 1px;
-}
-
-.container .conteudo .space-cards1 {
-    background-color: rgb(194, 194, 194);
-    width: 100%;
-    height: 400px;
-    margin-top: 1000px;
+.container .conteudo .formulario {
+    margin-top: 80px;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
 }
 
-.slider {
-    display: block;
-    height: 293px;
-    width: 600px;
-    margin: auto;
-    margin-top: 20px;
-    position: relative;
+.container .conteudo .formulario .inputForm {
+    height: 40px;
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 3px;
 }
 
-.slider li {
-    list-style: none;
-    position: absolute;
+.container .conteudo .formulario textarea {
+    resize: none;
+    height: 100px;
+    width: 40%;
+    font-size: 15px;
+    padding-left: 3px;
 }
 
-.slider img {
-    margin: auto;
-    height: 100%;
-    width: 100%;
-    vertical-align: top;
-}
-
-.slider input {
-    display: none;
-}
-
-
-.slider label {
-    background-color: #000;
-    bottom: 10px;
+.container .conteudo .formulario .enviarFormulario {
+    width: 40%;
+    height: 40px;
+    background-color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    display: block;
-    height: 10px;
-    position: absolute;
-    width: 10px;
-    z-index: 10;
+    color: white;
+    font-size: 20px;
+
+
 }
 
-.slider li:nth-child(1) label {
-    left: 10px;
+.container .conteudo .formulario .enviarFormulario img {
+    height: 30px;
+    width: 30px;
+    padding-left: 1px;
+
 }
 
-.slider li:nth-child(2) label {
-    left: 40px;
+.container .conteudo .formulario .enviarFormulario .classeImageButton {
+    margin-right: 5px;
 }
 
-.slider li:nth-child(3) label {
-    left: 70px;
+.container .conteudo .formulario .mensage1 {
+    margin-top: 15px;
+    font-size: 12px;
 }
 
-.slider img {
-    opacity: 0;
-    visibility: hidden;
+.container .conteudo .formulario .mensage1 .spanMensage1 {
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
 }
 
-.slider li input:checked~img {
-    opacity: 1;
-    visibility: visible;
-    z-index: 10;
+.container .conteudo .formulario .parte2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 80px;
+    gap: 20px;
+}
+
+.container .conteudo .formulario .parte2 h2 {
+    color: #484848;
+    font-size: 30px;
+    font-weight: 500;
+
+}
+
+.container .conteudo .formulario .parte2 .mensage2 {
+    font-size: 17px;
+}
+
+.container .conteudo .redesSociais {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 100px;
+    padding: 60px;
+
+}
+
+.container .conteudo .redesSociais img {
+    height: 150px;
+    width: 150px;
+    cursor: pointer;
 }

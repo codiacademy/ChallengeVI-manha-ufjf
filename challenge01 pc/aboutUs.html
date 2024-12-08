@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>aboutUs</title>
+    <title>Codi E-commerce</title>
     <link rel="stylesheet" type="text/css" href="styleAboutUs.css">
     <link rel="icon" type="image/iconCodi" href="imagens/iconCodi.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -41,10 +41,11 @@
             <div class="conteudo">
                 <h1 class="inicioForm">Fale conosco</h1>
                 <div class="formulario">
-                    <input class="inputForm" type="text" placeholder="Nome">
-                    <input class="inputForm" type="number" placeholder="Telefone">
-                    <input class="inputForm" type="email" placeholder="E-mail">
-                    <textarea placeholder="Mensagem"></textarea>
+                    <input class="inputForm" type="text" placeholder="Nome" required>
+                    <input class="inputForm" type="tel" pattern="\(\d{2}\) \d{5}-\d{4}" placeholder="Telefone com DDD"
+                        required maxlength="15">
+                    <input class="inputForm" type="email" placeholder="E-mail" required>
+                    <textarea placeholder="Mensagem" required></textarea>
                     <button class="enviarFormulario">
                         <img class="classeImageButton" src="imagens/imageFormulario.png">
                         Enviar

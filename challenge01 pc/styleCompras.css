@@ -1,0 +1,309 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* engloba todo o codigo*/
+body {
+    width: 100%;
+    height: 100%;
+    font-family: "Inter", serif;
+    font-weight: 200px;
+    font-style: regular;
+    font-optical-sizing: auto;
+    background-color: #FFFFFF;
+    overflow-x: hidden;
+}
+
+.container {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    max-width: 100%;
+}
+
+.container .conteudo {
+    flex: 1;
+    min-height: 1500px;
+    background-color: #FFFFFF;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+}
+
+/* INICIO DO HEADER */
+
+/* fundo header*/
+.container .headerHomepage {
+    background-color: #121213;
+    width: 100%;
+    height: 65px;
+    display: flex;
+    padding: 5px 15px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* PARTE ESQUERDA DO HEADER */
+
+.container .headerHomepage .iconesLeft {
+    display: flex;
+    gap: 30px;
+}
+
+.container .headerHomepage .iconesLeft .iconeCodi {
+    z-index: 1;
+    height: 75px;
+    width: 75px;
+    padding: 3px;
+    margin-left: 5px;
+    cursor: pointer;
+
+}
+
+.container .headerHomepage .iconesLeft .pesquisarLocal {
+    margin-top: 7px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1px;
+}
+
+.container .headerHomepage .inputBuscarProdutos {
+    padding: 7px;
+    margin-right: 10px;
+    height: 30px;
+    margin-top: 10px;
+    border: 1px solid #FFFFFF;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    width: 550px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    box-shadow: 2px 2px 3px rgb(74, 2, 107);
+}
+
+.container .headerHomepage .botaoPesquisar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+    padding-left: 7px;
+    padding-top: 5px;
+    background-color: #121213;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #2E0660;
+    width: 40px;
+    height: 30px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    margin-left: -1px;
+}
+
+.botaoPesquisar img.imageBotao01 {
+    width: 25px;
+    height: 25px;
+    margin-bottom: 5px;
+}
+
+/* PARTE DIREITA DO HEADER */
+
+.container .headerHomepage .iconesRight h1 {
+    color: #FFFFFF;
+    font-size: 20px;
+    font-weight: 200;
+    cursor: pointer;
+}
+
+.container .headerHomepage #iconsRight {
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+
+
+.container .headerHomepage .iconesRight {
+    display: flex;
+    gap: 30px
+}
+
+.container .headerHomepage .iconesRight h1 {
+    margin-top: 5px;
+}
+
+/* FIM DO HEADER */
+
+/* INICIO DO FOOTER*/
+
+.container .footerAll {
+    height: 195px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+/* FOOTER SUPERIOR */
+
+.container .footerAll .footerSuperior {
+    background-color: #5C407E;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 150px;
+    padding-right: 20px;
+    width: 100%;
+}
+
+.container .footerAll .footerSuperior .linkHP {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container .footerAll .footerSuperior h1 {
+    margin-left: 20px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 200;
+}
+
+.container .footerAll .linhaBranca {
+    width: 100%;
+    height: 1px;
+    background-color: #FFFFFF;
+    margin-top: 1px;
+}
+
+
+/* FOOTER INFERIOR */
+
+.container .footerAll .footerInferior {
+    width: 100%;
+    height: 60px;
+    background-color: #8641DA;
+}
+
+.container .footerAll .footerInferior h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 200;
+    padding-top: 20px;
+}
+
+/* FIM DO FOOTER */
+
+/* INICIO DO CONTEUDO */
+
+.container .conteudo .spaceText {
+    display: flex;
+    gap: 630px;
+    padding: 20px;
+}
+
+.container .conteudo .spaceText h1 {
+    font-size: 40px;
+    font-family: "inter";
+    font-weight: 250;
+}
+
+.container .conteudo .spaceProduct {
+    display: flex;
+
+}
+
+.container .conteudo .spaceProduct img {
+    height: 200px;
+    width: 200px;
+    margin-left: 20px;
+}
+
+.container .conteudo .spaceProduct .spaceProductP {
+    width: 600px;
+    background-color: rgb(255, 255, 255);
+    margin-left: 25px;
+    margin-top: 50px;
+    height: 200px;
+}
+
+.container .conteudo .spaceProduct p {
+    font-size: 30px;
+    font-weight: 200;
+
+}
+
+.container .conteudo .spaceIcons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    margin-top: 75px;
+    height: 20px;
+    width: 50px;
+}
+
+.container .conteudo .spaceIcons img {
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.container .conteudo .spaceIcons .lixo {
+    margin-right: 18px;
+}
+
+.container .conteudo .spaceResumo {
+    width: 100%;
+    height: 500px;
+    background-color: #EACFEB;
+}
+
+.container .conteudo .spaceResumo .resumo2 {
+    font-size: 50px;
+    font-weight: 200;
+    padding-top: 30px;
+    padding-left: 30px;
+}
+
+.container .conteudo .spaceResumo .ValorFreteCEP {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 45px;
+    height: 300px;
+    width: 30%;
+    padding-left: 30px;
+
+}
+
+.container .conteudo .spaceResumo .ValorFreteCEP h1 {
+    font-size: 30px;
+    font-weight: 250;
+
+}
+
+.container .conteudo .spaceResumo .cepInput {
+    display: flex;
+    gap: 40px;
+}
+
+.container .conteudo .spaceResumo .cepInput input {
+    height: 30px;
+    margin-top: 4px;
+    width: 200px;
+    font-size: 20px;
+}
+
+.container .conteudo .spaceResumo .valoresBotao {
+    display: flex;
+    flex-direction: column;
+
+}

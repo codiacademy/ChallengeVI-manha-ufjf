@@ -29,10 +29,11 @@ model users {
 }
 
 model shoppingCart {
-  id        Int    @id @unique @default(autoincrement())
-  userId    Int
-  productId Int
-  category  String
+  id             Int     @id @unique @default(autoincrement())
+  userId         Int
+  productId      Int
+  isFavorite     Boolean
+  isShoppingCart Boolean
 
   user    users    @relation(fields: [userId], references: [id])
   product products @relation(fields: [productId], references: [id])

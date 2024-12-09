@@ -263,14 +263,13 @@ body {
     width: 100%;
     height: 500px;
     background-color: #EACFEB;
+    margin-top: 400px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
 }
 
-.container .conteudo .spaceResumo .resumo2 {
-    font-size: 50px;
-    font-weight: 200;
-    padding-top: 30px;
-    padding-left: 30px;
-}
 
 .container .conteudo .spaceResumo .ValorFreteCEP {
     display: flex;
@@ -284,10 +283,40 @@ body {
 
 }
 
+.container .conteudo .spaceResumo .valoresBotao {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+    height: 300px;
+    width: 30%;
+    margin-top: 45px;
+    padding-right: 20px;
+
+}
+
+.container .conteudo .spaceResumo .valoresBotao h1 {
+    font-size: 30px;
+    font-weight: 250;
+}
+
 .container .conteudo .spaceResumo .ValorFreteCEP h1 {
     font-size: 30px;
     font-weight: 250;
 
+}
+
+.container .conteudo .spaceResumo .valoresBotao button {
+    width: 80px;
+    height: 25px;
+    background-color: #5C407E;
+    color: white;
+    font-size: 15px;
+    font-family: "inter";
+    font-weight: 300;
+    cursor: pointer;
+    border-radius: 6px;
 }
 
 .container .conteudo .spaceResumo .cepInput {
@@ -302,8 +331,52 @@ body {
     font-size: 20px;
 }
 
-.container .conteudo .spaceResumo .valoresBotao {
+
+.container .conteudo .spaceResumo .engloba1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 300px;
+    padding: 20px;
+}
+
+.container .conteudo .spaceButtons {
     display: flex;
     flex-direction: column;
+    margin-top: 50px;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
 
+.container .conteudo .spaceButtons button {
+    width: 30%;
+    height: 40px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.container .conteudo .spaceButtons .button01 {
+    background-color: #5C407E;
+    font-size: 18px;
+    font-family: "inter";
+    font-weight: 300;
+    color: white;
+}
+
+.container .conteudo .spaceButtons .button01:hover {
+    background-color: #684d8a;
+}
+
+.container .conteudo .spaceButtons .button02 {
+    background-color: #000000;
+    font-size: 18px;
+    font-family: "inter";
+    font-weight: 300;
+    color: white;
+}
+
+.container .conteudo .spaceButtons .button02:hover {
+    background-color: #1b1a1a;
 }

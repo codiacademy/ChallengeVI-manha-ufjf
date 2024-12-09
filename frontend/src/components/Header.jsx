@@ -41,11 +41,13 @@ function Header() {
             className="h-12 w-12 cursor-pointer"
           />
           <div className="flex items-center ps-12">
-            <input
+          <input
               type="text"
               placeholder="Buscar produtos"
-              className="border border-white rounded-l-xl p-2 h-10 w-[550px] focus:outline-none text-black "
-            />
+              className="border border-gray-300 rounded-l-xl p-2 h-10 w-full sm:w-[300px] md:w-[400px] lg:w-[550px] focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-black  placeholder-gray-500"
+              aria-label="Buscar produtos"
+              />
+
             <button className="bg-purple-800 h-10 w-10 flex items-center justify-center rounded-r-xl">
               <MagnifyingGlassIcon className="h-5 w-5"/>
               

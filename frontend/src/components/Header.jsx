@@ -11,6 +11,7 @@ import {
   DevicePhoneMobileIcon,
   
 } from "@heroicons/react/24/outline";
+import { Link } from 'react-router-dom';
 import CodiIcon from '../imagens/iconCodi.png'
 import Login from "./Login";
 import Register from "./Register";
@@ -107,7 +108,7 @@ function Header() {
         </div>
 
         <div className="hidden md:flex space-x-8 items-center">
-        <h1 className="cursor-pointer">PRODUTOS</h1>
+        <Link to='/showprodutos'><h1 className="cursor-pointer">PRODUTOS</h1></Link>
           <div className="flex space-x-6 items-center">
             <button
               onClick={openLogin}
@@ -115,12 +116,13 @@ function Header() {
             >
               <UserIcon className="w-6 h-6 mr-2" /> Login
             </button>
+           
             <a href="#favoritos" className="flex items-center hover:text-gray-400">
               <HeartIcon className="w-6 h-6 mr-2" /> Favoritos
-            </a>
-            <a href="#carrinho" className="flex items-center hover:text-gray-400">
+            </a> 
+            <Link to="/Carrinho" className="flex items-center hover:text-gray-400">
               <ShoppingCartIcon className="w-6 h-6 mr-2" /> Carrinho
-            </a>
+            </Link>
           </div>
         </div>
       </header>

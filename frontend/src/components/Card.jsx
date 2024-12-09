@@ -1,15 +1,34 @@
-import React from 'react';
-import Productcard from './Productcard';
-import Teclado1 from '../imagens/imageProdutoTeclado01.png';
+import React, { useEffect, useState } from 'react';
+import api from '../server/api';
+import Productcard from '../components/Productcard';
 
 function Card() {
+  const [products, setProducts] = useState([]);
+
+  // Função para buscar os produtos da API
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await api.get('/products'); 
+        setProducts(response.data);
+      } catch (error) {
+        console.error('Erro ao buscar produtos:', error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
   return (
     <div className="flex flex-wrap gap-4 justify-center p-6">
-      <Productcard
-        imagem={Teclado1}
-        disc="Teclado Mecânico Gamer Husky Anchorage Full Size, Preto, ABNT2, RGB, Switch Gateron EF Red - HTG200PTVR"
-        price="R$ 1634,23"
-      />
+      {products.map((product) => (
+        <Productcard
+          key={product.id}
+          imagem={product.imageURL}
+          disc={product.description}
+          price={`R$ ${product.price.toFixed(2)}`}
+        />
+      ))}
     </div>
   );
 }

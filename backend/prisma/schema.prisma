@@ -33,7 +33,7 @@ model shoppingCart {
   userId         Int
   productId      Int
   isFavorite     Boolean
-  isShoppingCart Boolean
+  isShoppingCart Boolean @default(false)
 
   user    users    @relation(fields: [userId], references: [id])
   product products @relation(fields: [productId], references: [id])

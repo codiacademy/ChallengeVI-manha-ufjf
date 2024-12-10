@@ -5,25 +5,21 @@ import ComprarIcon from '../imagens/imageBotaoComprar.png';
 import api from '../server/api';
 import { Link } from 'react-router-dom';
 
-function Productcard({ product, imagem, disc, price, onAddToCart, userId }) {
+function Productcard({ product, imagem, disc, price, onAddToCart }) {
   const handleAddToCart = async () => {
-
     try {
-      // Fazendo a requisição para adicionar o produto ao carrinho
       const response = await api.post('/shoppingCart', {
         productId: product.id,
-        // userId, // contexto
       });
 
       console.log('Item adicionado ao carrinho:', response.data);
 
-      // Atualiza o estado no componente pai para refletir a mudança no carrinho
 
+      if (onAddToCart) onAddToCart(response.data);
     } catch (error) {
       console.error('Erro ao adicionar item ao carrinho:', error);
     }
   };
-
 
   return (
     <main className="flex-grow p-8 ">

@@ -18,10 +18,10 @@ async function shoppingCartRoutes(router){
 
   router.post('/shoppingCart', async (req, res) => {
     const {productId} = req.body
-    if(!productId){
-      return res.status(400).json
-
+    if (!productId) {
+      return res.status(400).json({ error: 'Product ID is required' });
     }
+    
     try {
       const product = await prisma.shoppingCart.findUnique({
         where: {
@@ -29,11 +29,11 @@ async function shoppingCartRoutes(router){
         },
 
       });
-      if(!product){
-        return res.json(404)
-
+      if (!product) {
+        return res.status(404).json({ error: 'Product not found' });
       }
-      const cartItem = await prisma.shoppingCart.update({
+      
+      const cartItem = await prisma.shoppingCart.create({
         data:{
           productId,
           isShoppingCart: true
@@ -43,14 +43,14 @@ async function shoppingCartRoutes(router){
       return res.status(200).send(cartItem);
     } catch (error) {
       console.error('Error fetching shopping cart:', error);
-      return res.status(500).send({ error: 'Failed to list all shopping cart' });
+      return res.status(500).json({ error: 'Internal Server Error', details: error.message });
     }
   });
 
   // Rota para listar todos os Produtos no Carrinho de Compras
   router.get('/shoppingCart', async (req, res) => {
     try {
-      const shoppingCart = await prisma.products.findMany({
+      const shoppingCart = await prisma.shoppingCart.findMany({
         where: {
           isShoppingCart: true,
         },

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
-import SocialMedia from '../components/SocialMedia';
 import { EnvelopeIcon } from "@heroicons/react/24/outline"; 
 import insta from '../imagens/imageInsta.png';
 import Wpp from '../imagens/imageWpp.png';

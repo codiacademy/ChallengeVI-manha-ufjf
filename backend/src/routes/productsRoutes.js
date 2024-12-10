@@ -32,6 +32,47 @@ async function productsRoutes(router){
         return res.status(200).send(products)
     
     });
+
+    router.get('/products/monitors', async (req, res) => {
+        const products = await prisma.products.findMany({
+            where: {
+                category: "monitors"
+            }
+        });
+        
+        return res.status(200).send(products);
+    });
+
+    router.get('/products/keyboard', async (req, res) => {
+        const products = await prisma.products.findMany({
+            where: {
+                category: "keyboard"
+            }
+        });
+        
+        return res.status(200).send(products);
+    });
+    
+    router.get('/products/mouse', async (req, res) => {
+        const products = await prisma.products.findMany({
+            where: {
+                category: "mouse"
+            }
+        });
+        
+        return res.status(200).send(products);
+    });
+
+    router.get('/products/headset', async (req, res) => {
+        const products = await prisma.products.findMany({
+            where: {
+                category: "headset"
+            }
+        });
+        
+        return res.status(200).send(products);
+    });
+
 }
 
 module.exports = productsRoutes

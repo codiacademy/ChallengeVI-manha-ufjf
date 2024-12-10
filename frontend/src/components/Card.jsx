@@ -27,6 +27,7 @@ function Card() {
           imagem={product.imageURL}
           disc={product.description}
           price={`R$ ${product.price.toFixed(2)}`}
+          product={product}
         />
       ))}
     </div>

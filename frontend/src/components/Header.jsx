@@ -100,9 +100,9 @@ function Header() {
             >
               <UserIcon className="w-6 h-6 mr-2" /> Login
             </button>
-            <a href="#favoritos" className="flex items-center hover:text-gray-400">
+            <Link to='/favorito ' className="flex items-center hover:text-gray-400">
               <HeartIcon className="w-6 h-6 mr-2" /> Favoritos
-            </a>
+              </Link>
             <a href="#carrinho" className="flex items-center hover:text-gray-400">
               <ShoppingCartIcon className="w-6 h-6 mr-2" /> Carrinho
             </a>
@@ -119,9 +119,9 @@ function Header() {
               <UserIcon className="w-6 h-6 mr-2" /> Login
             </button>
            
-            <a href="#favoritos" className="flex items-center hover:text-gray-400">
+            <Link to='/favorito' className="flex items-center hover:text-gray-400"> 
               <HeartIcon className="w-6 h-6 mr-2" /> Favoritos
-            </a> 
+            </Link>
             <Link to="/Carrinho" className="flex items-center hover:text-gray-400">
               <ShoppingCartIcon className="w-6 h-6 mr-2" /> Carrinho
             </Link>

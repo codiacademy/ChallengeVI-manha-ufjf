@@ -1,8 +1,8 @@
 import React from 'react';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
-function Compras() {
-
+function Checkout() {
   return (
     <>
     <Header/>
@@ -76,9 +76,9 @@ function Compras() {
           CONTINUAR COMPRANDO
         </button>
       </div>
-    </main></>
+    </main>
+    <Footer/></>
   );
 }
 
-export default Compras;
-
+export default Checkout;

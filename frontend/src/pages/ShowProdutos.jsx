@@ -100,18 +100,42 @@
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import Card from '../components/Card'
+
 function ShowProdutos() {
   return (
     <>
       <Header />
-      <div className='bg-red-700 w-[500px] h-[50px]'>Monitor</div>
-      <Card/>
-      <Card/>
-      <Card/>
-      <Card/>
-      <Card/>
+      <main className="flex-grow p-8 bg-gradient-to-b from-violet-100 to-violet-300">
+        <div className="bg-gradient-to-b from-violet-400 to-violet-500 border border-purple-300 rounded-xl p-6 w-4/5 mx-auto shadow-lg hover:shadow-xl transition-shadow duration-300">
+          {/* Título e Descrição do Produto */}
+          <h1 className="text-3xl font-bold text-white text-center mb-8">Detalhes do Produto</h1>
 
+          {/* Imagem e Detalhes */}
+          <div className="flex flex-wrap p-8 items-center justify-center gap-8">
+            <img
+              className="h-80 w-80 object-contain mx-auto rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
+              src="imagens/imageProdutoTeclado01.png"
+              alt="Produto"
+            />
+            <div className="flex flex-col items-center justify-center">
+              <h2 className="text-4xl font-semibold text-white mb-4">R$499,90</h2>
+              <p className="font-medium text-lg text-white mb-4">Em até 10x R$49,99 sem juros</p>
+              <p className="text-[#21830D] font-bold mb-6">Disponível em estoque</p>
+              <button className="bg-gradient-to-br from-purple-900 to-purple-700 text-white py-3 px-8 rounded-lg flex items-center justify-center gap-2 shadow-md hover:shadow-lg hover:scale-105 transition-transform duration-300">
+                COMPRA AGORA
+              </button>
+            </div>
+          </div>
+
+          {/* Descrição Adicional */}
+          <div className="mt-12 text-center text-white">
+            <p className="text-lg">
+              <strong>Sobre este produto:</strong>{" "}
+              <span className="font-light">Informações adicionais sobre o produto.</span>
+            </p>
+          </div>
+        </div>
+      </main>
       <Footer />
     </>
   );

@@ -7,6 +7,7 @@ const HomePage = () => {
     <div className="min-h-screen flex flex-col  bg-gradient-to-b from-violet-100 to-violet-300">
      <Header />
      <Card />
+     <Card />
      <Footer />
       
     </div>

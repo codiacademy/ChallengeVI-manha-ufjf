@@ -5,7 +5,8 @@ import Carrinho from "./pages/Carrinho";
 import AboutUs from "./pages/AboutUs";
 import Compras from "./pages/Compras";
 import ShowProdutos from "./pages/ShowProdutos";
-
+import Checkout from "./pages/Checkout";
+import Favorito from "./pages/Favorito";
 function App() {
   return (
     <Router>
@@ -15,6 +16,8 @@ function App() {
         <Route path='/aboutus'element={<AboutUs/>}/>
         <Route path='/compras'element={<Compras/>}/>
         <Route path='/showprodutos'element={<ShowProdutos/>}/>
+        <Route path='/checkout'element={<Checkout/>}/>
+        <Route path='/favorito'element={<Favorito/>}/>
       </Routes>
     </Router>
     

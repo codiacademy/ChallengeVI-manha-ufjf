@@ -287,67 +287,89 @@ body {
     background-color: rgb(194, 194, 194);
     width: 100%;
     height: 400px;
-    margin-top: 1000px;
+    margin-top: 700px;
     display: flex;
     flex-direction: column;
 }
 
-.slider {
-    display: block;
-    height: 293px;
-    width: 600px;
-    margin: auto;
-    margin-top: 20px;
-    position: relative;
-}
 
-.slider li {
-    list-style: none;
-    position: absolute;
-}
 
-.slider img {
-    margin: auto;
-    height: 100%;
+.container .conteudo .carrosselArea {
+    background-color: #D9D9D9;
     width: 100%;
-    vertical-align: top;
+    height: 300px;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: row;
 }
 
-.slider input {
-    display: none;
+
+.container .conteudo .carrosselArea .imageArea img {
+    margin-left: 0;
+}
+
+.container .conteudo .carrosselArea .imageArea {
+    padding-top: 0px;
+    padding-left: 80px;
+    height: 100%;
+    width: 40%;
+    padding-right: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
-.slider label {
-    background-color: #000;
-    bottom: 10px;
+.container .conteudo .carrosselArea .valores {
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin-right: 60px;
+    padding-top: 20px;
+
+}
+
+.container .conteudo .carrosselArea .valores p {
+    font-size: 30px;
+    font-weight: 200;
+}
+
+.container .conteudo .carrosselArea .valores h1 {
+    font-size: 40px;
+    font-weight: 600;
+    margin-top: 40px;
+}
+
+.container .conteudo .carrosselArea .imageArea img {
+    height: 300px;
+    width: 300px;
+    margin-right: 20px;
+}
+
+.container .conteudo .carrosselArea .valores .botaoAddCarrinho {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 100%;
+    background-color: #2E0660;
+    color: white;
     cursor: pointer;
-    display: block;
-    height: 10px;
-    position: absolute;
-    width: 10px;
-    z-index: 10;
+    font-size: 20px;
+    padding-bottom: 1px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    border: 1px solid white;
 }
 
-.slider li:nth-child(1) label {
-    left: 10px;
+.container .conteudo .carrosselArea .valores .botaoAddCarrinho .imageBotao02 {
+    height: 30px;
+    width: 30px;
+    padding-left: 1px;
 }
 
-.slider li:nth-child(2) label {
-    left: 40px;
-}
-
-.slider li:nth-child(3) label {
-    left: 70px;
-}
-
-.slider img {
-    opacity: 0;
-    visibility: hidden;
-}
-
-.slider li input:checked~img {
-    opacity: 1;
-    visibility: visible;
-    z-index: 10;
+.container .conteudo .carrosselArea .valores .botaoAddCarrinho:hover {
+    background-color: #370e68;
 }

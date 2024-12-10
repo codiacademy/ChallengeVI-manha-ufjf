@@ -7,19 +7,33 @@ import { Link } from 'react-router-dom';
 
 function Productcard({ product, imagem, disc, price, onAddToCart }) {
   const handleAddToCart = async () => {
+    if (!product || !product.id || !product.userId) {
+      console.error('Product or required details are missing.');
+      return;
+    }
+
+    const shoppingData = {
+      productId: product.id,
+      userId: product.userId, // Assuming userId is part of the product
+      isFavorite: product.isFavorite || false,
+      isShoppingCart: true, // Assuming you want to mark this as added to cart
+    };
+
     try {
-      const response = await api.post('/shoppingCart', {
-        productId: product.id,
-      });
+      const response = await api.post('/shoppingCart', shoppingData);
 
       console.log('Item adicionado ao carrinho:', response.data);
 
 
-      if (onAddToCart) onAddToCart(response.data);
+      if (onAddToCart) {
+        onAddToCart(response.data);
+      }
     } catch (error) {
       console.error('Erro ao adicionar item ao carrinho:', error);
+
     }
   };
+
 
   return (
     <main className="flex-grow p-8 ">

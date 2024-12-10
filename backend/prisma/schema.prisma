@@ -30,7 +30,7 @@ model users {
 
 model shoppingCart {
   id             Int     @id @unique @default(autoincrement())
-  userId         Int
+  userId         Int 
   productId      Int
   isFavorite     Boolean
   isShoppingCart Boolean @default(false)

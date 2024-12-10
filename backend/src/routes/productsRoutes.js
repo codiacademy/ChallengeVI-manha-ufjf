@@ -63,6 +63,16 @@ async function productsRoutes(router){
         return res.status(200).send(products);
     });
 
+    router.get('/products/computer', async (req, res) => {
+        const products = await prisma.products.findMany({
+            where: {
+                category: "computer"
+            }
+        });
+        
+        return res.status(200).send(products);
+    });
+
     router.get('/products/headset', async (req, res) => {
         const products = await prisma.products.findMany({
             where: {

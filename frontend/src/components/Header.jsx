@@ -35,11 +35,12 @@ function Header() {
     <>
       <header className="bg-black flex items-center justify-between p-5 text-white">
       <div className="flex gap-6 items-center">
+        <Link to='/'>
           <img
             src={CodiIcon}
             alt="Icone do site"
             className="h-12 w-12 cursor-pointer"
-          />
+          /></Link>
           <div className="flex items-center ps-12">
           <input
               type="text"

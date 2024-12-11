@@ -15,6 +15,7 @@ function App() {
         <Route path='/carrinho'element={<Carrinho/>}/>
         <Route path='/aboutus'element={<AboutUs/>}/>
         <Route path='/compras'element={<Compras/>}/>
+        <Route path="/compras/:id" element={<Compras />} />
         <Route path='/showprodutos'element={<ShowProdutos/>}/>
         <Route path='/checkout'element={<Checkout/>}/>
         <Route path='/favorito'element={<Favorito/>}/>

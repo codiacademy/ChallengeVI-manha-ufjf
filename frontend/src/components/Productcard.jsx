@@ -68,16 +68,20 @@ function Productcard({ product, imagem, disc, price, onAddToCart }) {
             {price ? `${price}` : 'Preço não informado'}
           </h2>
           {/* Botão Comprar */}
-          <Link to="/compras">
-            <button className="bg-gradient-to-br from-purple-900 to-purple-700 text-white rounded-md py-3 mt-6 w-full flex items-center justify-center gap-2 shadow-lg hover:shadow-purple-800 hover:scale-105 transition-transform duration-300">
-              <img
-                src={ComprarIcon}
-                alt="Ícone Comprar"
-                className="h-5 w-5"
-              />
-              <span className="tracking-wide">COMPRAR</span>
-            </button>
-          </Link>
+          <Link
+              to="/compras"
+              state={{ product }}
+            >
+              <button className="bg-gradient-to-br from-purple-900 to-purple-700 text-white rounded-md py-3 mt-6 w-full flex items-center justify-center gap-2 shadow-lg hover:shadow-purple-800 hover:scale-105 transition-transform duration-300">
+                <img
+                  src={ComprarIcon}
+                  alt="Ícone Comprar"
+                  className="h-5 w-5"
+                />
+                <span className="tracking-wide">VER INFORMAÇÕES</span>
+              </button>
+            </Link>
+
         </div>
       </div>
     </main>

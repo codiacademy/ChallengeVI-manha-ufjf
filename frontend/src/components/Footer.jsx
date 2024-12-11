@@ -1,22 +1,26 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Footer() {
   return (
-    <div><footer className="bg-purple-900 text-white">
-      <Link to='/aboutus'>
-    <div className="flex justify-between items-center px-6 py-4">
-      <h1 className="cursor-pointer">ABOUT US</h1>
-      <h1 className="cursor-pointer">HELP</h1>
-      <h1 className="cursor-pointer">CONTACT</h1>
-      <h1 className="cursor-pointer">SERVICES</h1>
-    </div></Link>
-    <div className="h-px bg-white"></div>
-    <div className="bg-purple-800 text-center py-3 text-sm">
-      © 2024 Copyright: E-Commerce
-    </div>
-  </footer></div>
-  )
+    <footer className="bg-purple-900 text-white  flex flex-col ">
+      {/* Seção de links de navegação */}
+      <div className="flex flex-wrap justify-center gap-8 px-6 py-4 ">
+        <Link to='/aboutus' className="cursor-pointer hover:text-purple-300 transition-colors duration-300">ABOUT US</Link>
+        <Link to='/help' className="cursor-pointer hover:text-purple-300 transition-colors duration-300">HELP</Link>
+        <Link to='/contact' className="cursor-pointer hover:text-purple-300 transition-colors duration-300">CONTACT</Link>
+        <Link to='/services' className="cursor-pointer hover:text-purple-300 transition-colors duration-300">SERVICES</Link>
+      </div>
+
+      {/* Linha separadora */}
+      <div className="h-px  bg-white "></div>
+
+      {/* Rodapé inferior */}
+      <div className="bg-purple-800 text-center py-3 text-sm">
+        © 2024 Copyright: E-Commerce
+      </div>
+    </footer>
+  );
 }
 
-export default Footer
+export default Footer;

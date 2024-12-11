@@ -1,84 +1,82 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
+import { ProductImage, ProductPrice, ProductButton } from '../components/ProductComponents';
 
 function Compras() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    const { product } = location.state || {};
+    if (!product || !product.imageURL || !product.price || !product.description) {
+      setError(true);
+      setLoading(false);
+      navigate('/');
+    } else {
+      setProduct(product);
+      setLoading(false);
+    }
+  }, [location.state, navigate]);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen bg-gradient-to-b from-violet-100 to-violet-300">
+        <p className="text-white font-semibold text-lg">Carregando...</p>
+      </div>
+    );
+  }
+
+  if (error || !product) {
+    return (
+      <div className="flex justify-center items-center min-h-screen bg-gradient-to-b from-violet-100 to-violet-300">
+        <p className="text-red-500 font-semibold text-lg">Erro: Produto inválido ou não encontrado. Redirecionando...</p>
+      </div>
+    );
+  }
+
+  const handleCompraClick = () => {
+    navigate('/checkout', {
+      state: {
+        product,
+        quantity: 1,
+      },
+    });
+  };
 
   return (
-    <>
-    <Header/>
-    <main className="flex-1  bg-gradient-to-t from-gray-400 via-gray-300 to-gray-200 text-white p-5">
-      {/* Cabeçalho */}
-      <div className="flex justify-between p-5">
-        <h1 className="text-4xl text-black font-light tracking-wide">SEUS ITENS</h1>
-        <h1 className="text-4xl text-black font-light tracking-wide">QNTD.</h1>
-      </div>
-
-      {/* Produto */}
-      <div className="flex items-center gap-6 bg-gray-800 rounded-xl shadow-lg p-5 hover:shadow-purple-700 transition-shadow duration-300">
-        <img
-          src="imagens/imageProdutoTeclado01.png"
-          alt="Produto"
-          className="h-52 w-52 rounded-lg shadow-md hover:shadow-purple-500 transition-shadow duration-300"
-        />
-        <div className="ml-6 flex-grow">
-          <p className="text-2xl font-light tracking-wide">
-            Teclado Mecânico RedDragon, Preto, entrada USB, 1500DPI
-          </p>
-        </div>
-        <div className="flex items-center gap-4">
-          <img
-            className="h-8 w-8 cursor-pointer hover:scale-110 transition-transform duration-200"
-            src="imagens/imageLixeiraPreta.png"
-            alt="Excluir"
-          />
-          <h1 className="text-2xl font-semibold">1</h1>
-          <img
-            className="h-8 w-8 cursor-pointer hover:scale-110 transition-transform duration-200"
-            src="imagens/imageMaisPreto.png"
-            alt="Adicionar"
-          />
-        </div>
-      </div>
-
-      {/* Resumo */}
-      <div className="bg-gradient-to-br from-purple-800 to-purple-600 rounded-xl mt-10 p-8 shadow-lg">
-        <h1 className="text-5xl font-light pb-6">Resumo:</h1>
-        <div className="flex flex-col gap-5 mt-6">
-          <h1 className="text-2xl font-light">Valor dos Produtos:</h1>
-          <h1 className="text-2xl font-light">Frete:</h1>
-          <div className="flex gap-10 items-center mt-4">
-            <h1 className="text-2xl font-light">CEP:</h1>
-            <input
-              type="tel"
-              required
-              minLength="8"
-              maxLength="8"
-              placeholder="12345678"
-              className="h-10 w-48 text-xl rounded-md bg-gray-900 text-white px-4 placeholder-gray-500 shadow-inner focus:outline-none focus:ring-2 focus:ring-purple-300"
-            />
+    <div className="flex flex-col min-h-screen bg-gradient-to-b from-violet-100 to-violet-300">
+      <Header />
+      <main className="flex-grow p-8">
+        <div className="bg-gradient-to-b from-violet-400 to-violet-500 border-2 border-purple-300 rounded-xl p-6 w-full sm:w-4/5 mx-auto shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <h1 className="text-4xl font-bold text-white text-center mb-8 tracking-wide">{product.name}</h1>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
+            <ProductImage imageURL={product.imageURL} altText={product.name} className="w-full sm:w-1/2 h-auto rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300" />
+            <div className="flex flex-col items-center sm:items-start text-center sm:text-left space-y-6">
+              <ProductPrice price={product.price} className="text-xl text-white font-semibold" />
+              <ProductButton 
+                label="COMPRAR AGORA" 
+                onClick={handleCompraClick} 
+                className="bg-purple-600 text-white py-2 px-8 rounded-lg shadow-md hover:bg-purple-700 transition-colors duration-200"
+              />
+            </div>
+          </div>
+          <div className="mt-12 text-center text-white">
+            <p className="text-lg leading-relaxed max-w-3xl mx-auto">
+              <strong className="text-xl">Sobre este produto:</strong> 
+              <span className="font-light">{product.description}</span>
+            </p>
           </div>
         </div>
-        <div className="flex flex-col gap-4 mt-12">
-          <h1 className="text-3xl font-light">R$499,90</h1>
-          <h1 className="text-3xl font-light">R$0,00</h1>
-          <button className="mt-4 p-3 bg-gradient-to-r from-purple-900 to-purple-700 text-white rounded-md shadow-md hover:scale-105 transition-transform duration-300">
-            OK
-          </button>
-        </div>
-      </div>
-
-      {/* Botões de Ação */}
-      <div className="flex gap-8 mt-10">
-        <button className="p-4 bg-gradient-to-r from-purple-900 to-purple-700 text-white rounded-md w-[220px] shadow-md hover:scale-105 transition-transform duration-300">
-          IR PARA O PAGAMENTO
-        </button>
-        <button className="p-4 bg-gradient-to-r from-purple-900 to-purple-700 text-white rounded-md w-[220px] shadow-md hover:scale-105 transition-transform duration-300">
-          CONTINUAR COMPRANDO
-        </button>
-      </div>
-    </main></>
+      </main>
+      <Footer />
+    </div>
   );
 }
 
 export default Compras;
-

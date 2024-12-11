@@ -1,83 +1,109 @@
 import React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { ProductImage } from '../components/ProductComponents';
 
 function Checkout() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { product, quantity = 1 } = location.state || {};
+  
+
+  if (!product) {
+    console.error('Produto inválido. Redirecionando para a página inicial.');
+    navigate('/');
+    return null;
+  }
+
+  const subtotal = product.price * quantity;
+  const taxRate = 0.1; // 10% de imposto
+  const tax = subtotal * taxRate;
+  const shipping = 15.0; // Taxa de envio fixa
+  const totalValue = (subtotal + tax + shipping).toFixed(2);
+
   return (
     <>
-    <Header/>
-    <main className="flex-1  bg-gradient-to-t from-gray-400 via-gray-300 to-gray-200 text-white p-5">
-      {/* Cabeçalho */}
-      <div className="flex justify-between p-5">
-        <h1 className="text-4xl text-black font-light tracking-wide">SEUS ITENS</h1>
-        <h1 className="text-4xl text-black font-light tracking-wide">QNTD.</h1>
-      </div>
+      <Header />
+      <main className="flex-1 bg-gradient-to-b from-violet-100 to-violet-300 text-black p-4 sm:p-6">
+        <div className="container mx-auto max-w-4xl">
+          {/* Título */}
+          <h1 className="text-2xl sm:text-4xl font-bold mb-6 text-center text-purple-800">Revisão do Pedido</h1>
 
-      {/* Produto */}
-      <div className="flex items-center gap-6 bg-gray-800 rounded-xl shadow-lg p-5 hover:shadow-purple-700 transition-shadow duration-300">
-        <img
-          src="imagens/imageProdutoTeclado01.png"
-          alt="Produto"
-          className="h-52 w-52 rounded-lg shadow-md hover:shadow-purple-500 transition-shadow duration-300"
-        />
-        <div className="ml-6 flex-grow">
-          <p className="text-2xl font-light tracking-wide">
-            Teclado Mecânico RedDragon, Preto, entrada USB, 1500DPI
-          </p>
-        </div>
-        <div className="flex items-center gap-4">
-          <img
-            className="h-8 w-8 cursor-pointer hover:scale-110 transition-transform duration-200"
-            src="imagens/imageLixeiraPreta.png"
-            alt="Excluir"
-          />
-          <h1 className="text-2xl font-semibold">1</h1>
-          <img
-            className="h-8 w-8 cursor-pointer hover:scale-110 transition-transform duration-200"
-            src="imagens/imageMaisPreto.png"
-            alt="Adicionar"
-          />
-        </div>
-      </div>
+          {/* Resumo dos Produtos */}
+          <div className="bg-gray-600 shadow-lg rounded-lg p-4 sm:p-6">
+            <table className="w-full text-left text-xs sm:text-sm md:text-base">
+              <thead>
+                <tr className="border-b">
+                  <th className="font-semibold pb-2 text-white">Produto: {product.name}</th>
+                  <th className="font-semibold pb-2 text-white">Preço Unitário</th>
+                  <th className="font-semibold pb-2 text-white">Quantidade</th>
+                  <th className="font-semibold pb-2 text-white">Subtotal</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-t border-slate-500">
+                  <td className="py-2 flex items-center gap-2 text-white">
+                    <ProductImage imageURL={product.imageURL} altText={product.name} className="w-12 h-12 sm:w-16 sm:h-16" />
+                    
+                  </td>
+                  <td className="py-2 text-xs sm:text-base text-white">R${product.price.toFixed(2)}</td>
+                  <td className="py-2 text-xs sm:text-base text-white">{quantity}</td>
+                  <td className="py-2 text-xs sm:text-base text-white">R${(product.price * quantity).toFixed(2)}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
 
-      {/* Resumo */}
-      <div className="bg-gradient-to-br from-purple-800 to-purple-600 rounded-xl mt-10 p-8 shadow-lg">
-        <h1 className="text-5xl font-light pb-6">Resumo:</h1>
-        <div className="flex flex-col gap-5 mt-6">
-          <h1 className="text-2xl font-light">Valor dos Produtos:</h1>
-          <h1 className="text-2xl font-light">Frete:</h1>
-          <div className="flex gap-10 items-center mt-4">
-            <h1 className="text-2xl font-light">CEP:</h1>
-            <input
-              type="tel"
-              required
-              minLength="8"
-              maxLength="8"
-              placeholder="12345678"
-              className="h-10 w-48 text-xl rounded-md bg-gray-900 text-white px-4 placeholder-gray-500 shadow-inner focus:outline-none focus:ring-2 focus:ring-purple-300"
-            />
+          {/* Resumo Financeiro */}
+          <div className="bg-gradient-to-br from-purple-800 to-purple-600 rounded-lg mt-6 p-4 sm:p-6 md:p-8 text-white">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold pb-4 text-center">Resumo do Pedido</h2>
+            <div className="flex flex-col sm:flex-row justify-between text-xs sm:text-sm md:text-lg pb-2 border-b border-purple-400">
+              <span>Subtotal:</span>
+              <span>R${subtotal.toFixed(2)}</span>
+            </div>
+            <div className="flex flex-col sm:flex-row justify-between text-xs sm:text-sm md:text-lg pb-2 border-b border-purple-400">
+              <span>Impostos (10%):</span>
+              <span>R${tax.toFixed(2)}</span>
+            </div>
+            <div className="flex flex-col sm:flex-row justify-between text-xs sm:text-sm md:text-lg pb-2 border-b border-purple-400">
+              <span>Frete:</span>
+              <span>R${shipping.toFixed(2)}</span>
+            </div>
+            <div className="flex flex-col sm:flex-row justify-between text-sm sm:text-lg md:text-2xl font-bold mt-4">
+              <span>Total:</span>
+              <span>R${totalValue}</span>
+            </div>
+          </div>
+
+          {/* Botões de Ação */}
+          <div className="flex flex-col gap-4 mt-6 sm:flex-row sm:gap-6">
+            <button
+              className="flex-1 p-3 sm:p-4 bg-purple-900 text-white text-sm sm:text-lg rounded-md shadow-md hover:bg-purple-700 transition duration-300"
+              onClick={() => navigate('/payment', { state: { product, quantity, totalValue } })}
+            >
+              Ir para o Pagamento
+            </button>
+            <button
+              className="flex-1 p-3 sm:p-4 bg-gray-200 text-black text-sm sm:text-lg rounded-md shadow-md hover:bg-gray-500 transition duration-300"
+              onClick={() => navigate('/')}
+            >
+              Continuar Comprando
+            </button>
+          </div>
+
+          {/* Informações adicionais */}
+          <div className="mt-6 bg-gray-200 p-4 sm:p-6 rounded-lg shadow-md">
+            <h3 className="text-base sm:text-lg md:text-2xl font-semibold mb-4">Política de Devolução</h3>
+            <p className="text-xs sm:text-sm md:text-base text-gray-600">
+              Se você não estiver satisfeito com sua compra, pode devolvê-la em até 30 dias. 
+              Para mais informações, visite nossa página de política de devoluções.
+            </p>
           </div>
         </div>
-        <div className="flex flex-col gap-4 mt-12">
-          <h1 className="text-3xl font-light">R$499,90</h1>
-          <h1 className="text-3xl font-light">R$0,00</h1>
-          <button className="mt-4 p-3 bg-gradient-to-r from-purple-900 to-purple-700 text-white rounded-md shadow-md hover:scale-105 transition-transform duration-300">
-            OK
-          </button>
-        </div>
-      </div>
-
-      {/* Botões de Ação */}
-      <div className="flex gap-8 mt-10">
-        <button className="p-4 bg-gradient-to-r from-purple-900 to-purple-700 text-white rounded-md w-[220px] shadow-md hover:scale-105 transition-transform duration-300">
-          IR PARA O PAGAMENTO
-        </button>
-        <button className="p-4 bg-gradient-to-r from-purple-900 to-purple-700 text-white rounded-md w-[220px] shadow-md hover:scale-105 transition-transform duration-300">
-          CONTINUAR COMPRANDO
-        </button>
-      </div>
-    </main>
-    <Footer/></>
+      </main>
+      <Footer />
+    </>
   );
 }
 

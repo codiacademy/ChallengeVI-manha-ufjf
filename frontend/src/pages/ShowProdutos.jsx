@@ -1,143 +1,156 @@
-// import React from 'react';
-// import Header from '../components/Header';
-// import Footer from '../components/Footer';
-
-// function ShowProdutos() {
-//   return (
-//     <>
-//       <Header />
-//       <div className="flex-1 bg-white">
-//         {/* Título do Produto */}
-//         <div className="h-1/5 flex items-center justify-center rounded-t-xl">
-//           <h1 className="text-4xl font-light text-center text-white">
-//             Teclado Mecânico RedDragon, Preto, entrada USB, 1500DPI
-//           </h1>
-//         </div>
-
-//         {/* Imagem e Informações do Produto */}
-        
-//         <div className="flex p-8 md:flex-row flex-col items-center md:items-start ">
-//           <img
-//             className="h-72 w-72 object-cover shadow-lg border-2 border-violet-300 hover:shadow-purple-400 transition-shadow duration-300"
-//             src="imagens/imageProdutoTeclado01.png"
-//             alt="Teclado Mecânico RedDragon, Preto, entrada USB, 1500DPI"
-//           />
-//           <div className="flex flex-col items-center md:items-start justify-center mt-6 md:ml-12 space-y-6">
-//             <h2 className="text-4xl font-bold text-gray-800">R$499,90</h2>
-//             <p className="font-semibold text-lg text-gray-700">Em até 10x R$49,99 sem juros</p>
-//             <p className="text-[#21830D] font-semibold text-lg">Em estoque</p>
-//             <button 
-//               className="bg-gradient-to-br from-purple-900 to-purple-700 text-white w-full md:w-72 h-12 text-lg font-bold rounded-lg shadow-md hover:bg-[#19276e] transition duration-300"
-//               aria-label="Adicionar Teclado Mecânico RedDragon ao carrinho"
-//             >
-//               ADICIONAR AO CARRINHO
-//             </button>
-//           </div>
-//         </div>
-
-//         {/* Descrição do Produto */}
-//         <div className="flex justify-center mt-16 px-4">
-//           <p className="text-lg md:text-xl text-center text-gray-700">
-//             <span className="font-semibold text-gray-800">Sobre este produto:</span> Informações adicionais sobre o produto.
-//           </p>
-//         </div>
-//       </div>
-//       <Footer />
-//     </>
-//   );
-// }
-
-// export default ShowProdutos;
-
-// import React from 'react';
-// import Header from '../components/Header';
-// import Footer from '../components/Footer';
-
-// function ShowProdutos() {
-//   return (
-//     <>
-//       <Header />
-//       <main className="flex-grow p-8 bg-gradient-to-b from-violet-100 to-violet-300">
-//         <div className="bg-gradient-to-b from-violet-400 to-violet-500 border border-purple-300 rounded-xl p-6 w-4/5 mx-auto shadow-lg hover:shadow-xl transition-shadow duration-300">
-//           {/* Título e Descrição do Produto */}
-//           <h1 className="text-3xl font-bold text-white text-center mb-8">Detalhes do Produto</h1>
-
-//           {/* Imagem e Detalhes */}
-//           <div className="flex flex-wrap p-8 items-center justify-center gap-8">
-//             <img
-//               className="h-80 w-80 object-contain mx-auto rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
-//               src="imagens/imageProdutoTeclado01.png"
-//               alt="Produto"
-//             />
-//             <div className="flex flex-col items-center justify-center">
-//               <h2 className="text-4xl font-semibold text-white mb-4">R$499,90</h2>
-//               <p className="font-medium text-lg text-white mb-4">Em até 10x R$49,99 sem juros</p>
-//               <p className="text-[#21830D] font-bold mb-6">Disponível em estoque</p>
-//               <button className="bg-gradient-to-br from-purple-900 to-purple-700 text-white py-3 px-8 rounded-lg flex items-center justify-center gap-2 shadow-md hover:shadow-lg hover:scale-105 transition-transform duration-300">
-//                 ADICIONAR AO CARRINHO
-//               </button>
-//             </div>
-//           </div>
-
-//           {/* Descrição Adicional */}
-//           <div className="mt-12 text-center text-white">
-//             <p className="text-lg">
-//               <strong>Sobre este produto:</strong>{" "}
-//               <span className="font-light">Informações adicionais sobre o produto.</span>
-//             </p>
-//           </div>
-//         </div>
-//       </main>
-//       <Footer />
-//     </>
-//   );
-// }
-
-// export default ShowProdutos;
-
-// export default ShowProdutos;
-
-import React from 'react';
-import Header from '../components/Header';
+import React, { useState, useEffect } from 'react'; 
+import AddCarrinho from '../imagens/imageAddCarrinho.png';
+import AddFav from '../imagens/imageAddFav.png';
+import ComprarIcon from '../imagens/imageBotaoComprar.png';
+import api from '../server/api';
+import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
+import Header from '../components/Header';
 
 function ShowProdutos() {
+  const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [category, setCategory] = useState('');
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await api.get('/products');
+        setProducts(response.data);
+        setFilteredProducts(response.data);
+      } catch (error) {
+        console.error('Erro ao buscar produtos:', error);
+      }
+    };
+    fetchProducts();
+  }, []);
+
+  const handleFilter = (category) => {
+    setCategory(category);
+    if (category === '') {
+      setFilteredProducts(products);
+    } else {
+      setFilteredProducts(products.filter(product => product.category === category));
+    }
+  };
+
   return (
-    <>
+    <div className='bg-gradient-to-b from-violet-100 to-violet-300'>
       <Header />
-      <main className="flex-grow p-8 bg-gradient-to-b from-violet-100 to-violet-300">
-        <div className="bg-gradient-to-b from-violet-400 to-violet-500 border border-purple-300 rounded-xl p-6 w-4/5 mx-auto shadow-lg hover:shadow-xl transition-shadow duration-300">
-          {/* Título e Descrição do Produto */}
-          <h1 className="text-3xl font-bold text-white text-center mb-8">Detalhes do Produto</h1>
+      {/* Mini NavBar de Filtro */}
+      <nav className="flex flex-wrap justify-center gap-4 p-4 bg-gray-800 text-white">
+        <button onClick={() => handleFilter('')} className={`px-4 py-2 ${category === '' ? 'bg-purple-600' : 'bg-gray-700'} rounded mb-2 sm:mb-0 sm:px-6 sm:py-3`}>
+          Todos
+        </button>
+        <button onClick={() => handleFilter('monitors')} className={`px-4 py-2 ${category === 'monitors' ? 'bg-purple-600' : 'bg-gray-700'} rounded mb-2 sm:mb-0 sm:px-6 sm:py-3`}>
+          Monitores
+        </button>
+        <button onClick={() => handleFilter('keyboard')} className={`px-4 py-2 ${category === 'keyboard' ? 'bg-purple-600' : 'bg-gray-700'} rounded mb-2 sm:mb-0 sm:px-6 sm:py-3`}>
+          Teclados
+        </button>
+        <button onClick={() => handleFilter('mouse')} className={`px-4 py-2 ${category === 'mouse' ? 'bg-purple-600' : 'bg-gray-700'} rounded mb-2 sm:mb-0 sm:px-6 sm:py-3`}>
+          Mouses
+        </button>
+        <button onClick={() => handleFilter('computer')} className={`px-4 py-2 ${category === 'computer' ? 'bg-purple-600' : 'bg-gray-700'} rounded mb-2 sm:mb-0 sm:px-6 sm:py-3`}>
+          Computadores
+        </button>
+        <button onClick={() => handleFilter('headset')} className={`px-4 py-2 ${category === 'headset' ? 'bg-purple-600' : 'bg-gray-700'} rounded mb-2 sm:mb-0 sm:px-6 sm:py-3`}>
+          Headsets
+        </button>
+      </nav>
 
-          {/* Imagem e Detalhes */}
-          <div className="flex flex-wrap p-8 items-center justify-center gap-8">
-            <img
-              className="h-80 w-80 object-contain mx-auto rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
-              src="imagens/imageProdutoTeclado01.png"
-              alt="Produto"
-            />
-            <div className="flex flex-col items-center justify-center">
-              <h2 className="text-4xl font-semibold text-white mb-4">R$499,90</h2>
-              <p className="font-medium text-lg text-white mb-4">Em até 10x R$49,99 sem juros</p>
-              <p className="text-[#21830D] font-bold mb-6">Disponível em estoque</p>
-              <button className="bg-gradient-to-br from-purple-900 to-purple-700 text-white py-3 px-8 rounded-lg flex items-center justify-center gap-2 shadow-md hover:shadow-lg hover:scale-105 transition-transform duration-300">
-                COMPRA AGORA
-              </button>
-            </div>
-          </div>
-
-          {/* Descrição Adicional */}
-          <div className="mt-12 text-center text-white">
-            <p className="text-lg">
-              <strong>Sobre este produto:</strong>{" "}
-              <span className="font-light">Informações adicionais sobre o produto.</span>
-            </p>
-          </div>
-        </div>
-      </main>
+      {/* Produtos Filtrados */}
+      <div className="flex flex-wrap gap-4 justify-center p-6">
+        {filteredProducts.map(product => (
+          <Productcard
+            key={product.id}
+            product={product}
+            imagem={product.imageURL}
+            disc={product.description}
+            price={`R$ ${product.price.toFixed(2)}`}
+          />
+        ))}
+      </div>
       <Footer />
-    </>
+    </div>
+  );
+}
+
+function Productcard({ product, imagem, disc, price, onAddToCart }) {
+  const handleAddToCart = async () => {
+    if (!product || !product.id || !product.userId) {
+      console.error('Product or required details are missing.');
+      return;
+    }
+
+    const shoppingData = {
+      productId: product.id,
+      userId: product.userId,
+      isFavorite: product.isFavorite || false,
+      isShoppingCart: true,
+    };
+
+    try {
+      const response = await api.post('/shoppingCart', shoppingData);
+      console.log('Item adicionado ao carrinho:', response.data);
+
+      if (onAddToCart) {
+        onAddToCart(response.data);
+      }
+    } catch (error) {
+      console.error('Erro ao adicionar item ao carrinho:', error);
+    }
+  };
+
+  return (
+    <main className="flex-grow p-8 ">
+      <div className="flex justify-center">
+        <div className="bg-gradient-to-b from-violet-400 to-violet-500 border border-purple-400 rounded-xl p-6 w-72 shadow-xl hover:shadow-purple-700 hover:scale-105 transition-all duration-300">
+          {/* Ícones de Ações */}
+          <div className="flex justify-end gap-3">
+            <img
+              src={AddCarrinho}
+              alt="Adicionar ao carrinho"
+              className="h-6 w-6 cursor-pointer hover:scale-125 hover:brightness-150 transition-all duration-200"
+              onClick={handleAddToCart}
+            />
+            <img
+              src={AddFav}
+              alt="Adicionar aos favoritos"
+              className="h-6 w-6 cursor-pointer hover:scale-125 hover:brightness-150 transition-all duration-200"
+            />
+          </div>
+          {/* Imagem do Produto */}
+          <img
+            src={imagem}
+            alt="Produto"
+            className="mx-auto h-48 my-4 object-contain shadow-lg hover:shadow-purple-500 transition-shadow duration-300"
+          />
+          {/* Descrição */}
+          <p className="text-sm text-gray-300 text-center mb-2 italic tracking-wide">
+            {disc || 'Descrição não disponível'}
+          </p>
+          {/* Preço */}
+          <h2 className="text-2xl font-bold mt-2 text-white text-center">
+            {price ? `${price}` : 'Preço não informado'}
+          </h2>
+          {/* Botão Comprar */}
+          <Link
+              to="/compras"
+              state={{ product }}
+            >
+              <button className="bg-gradient-to-br from-purple-900 to-purple-700 text-white rounded-md py-3 mt-6 w-full flex items-center justify-center gap-2 shadow-lg hover:shadow-purple-800 hover:scale-105 transition-transform duration-300">
+                <img
+                  src={ComprarIcon}
+                  alt="Ícone Comprar"
+                  className="h-5 w-5"
+                />
+                <span className="tracking-wide">VER INFORMAÇÕES</span>
+              </button>
+            </Link>
+        </div>
+      </div>
+    </main>
   );
 }
 

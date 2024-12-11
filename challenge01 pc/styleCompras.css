@@ -380,3 +380,16 @@ body {
 .container .conteudo .spaceButtons .button02:hover {
     background-color: #1b1a1a;
 }
+
+
+
+.spaceIcons button {
+    padding: 5px 10px;
+    background-color: #5c2d91;
+    color: #fff;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    margin: 7px 5px;
+
+}

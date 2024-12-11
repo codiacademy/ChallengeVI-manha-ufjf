@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de Compras</title>
     <link rel="stylesheet" href="styleCompras.css" type="text/css">
     <link rel="icon" type="image/iconCodi" href="imagens/iconCodi.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,7 +12,6 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet">
-    <title>Codi e-commerce</title>
 </head>
 
 <body>
@@ -26,7 +26,6 @@
                     </button>
                 </div>
             </div>
-
             <div class="iconesRight">
                 <h1>PRODUTOS</h1>
                 <img id="iconsRight" class="imageCarrinho" src="imagens/imageCarrinho.png" alt="imagem do carrinho">
@@ -40,6 +39,7 @@
                 <h1>SEUS ITENS</h1>
                 <h1>QNTD.</h1>
             </div>
+
             <div class="spaceProduct">
                 <img src="imagens/imageProdutoTeclado01.png">
                 <div class="spaceProductP">
@@ -47,10 +47,14 @@
                 </div>
                 <div class="spaceIcons">
                     <img class="lixo" src="imagens/imageLixeiraPreta.png">
-                    <h1>1</h1>
-                    <img src="imagens/imageMaisPreto.png">
+
+                    <button class="btn-minus"> -</button>
+                    <h1 class="quantity">1</h1>
+                    <button class="btn-plus">+</button>
+
                 </div>
             </div>
+
             <div class="spaceResumo">
                 <div class="engloba1">
                     <div class="ValorFreteCEP">
@@ -62,7 +66,7 @@
                         </div>
                     </div>
                     <div class="valoresBotao">
-                        <h1>R$499,90</h1>
+                        <h1 id="valorProdutos">R$499,90</h1>
                         <h1>R$0,00</h1>
                         <button>OK</button>
                     </div>
@@ -88,6 +92,43 @@
             </div>
         </footer>
     </div>
+
+    <script>
+        const btnPlus = document.querySelector(".btn-plus");
+        const btnMinus = document.querySelector(".btn-minus");
+        const btnTrash = document.querySelector(".lixo");
+        const quantityDisplay = document.querySelector(".quantity");
+        const valorProdutos = document.getElementById("valorProdutos");
+
+        const precoProduto = 499.90;
+
+        function atualizarValorProdutos(quantidade) {
+            valorProdutos.textContent = `R$${(quantidade * precoProduto).toFixed(2).replace('.', ',')}`;
+        }
+
+        let quantidade = 1; // Inicializa com 1 produto
+        atualizarValorProdutos(quantidade);
+
+        btnPlus.addEventListener("click", () => {
+            quantidade++;
+            quantityDisplay.textContent = quantidade;
+            atualizarValorProdutos(quantidade);
+        });
+
+        btnMinus.addEventListener("click", () => {
+            if (quantidade > 1) { // Evita que a quantidade fique abaixo de 1
+                quantidade--;
+                quantityDisplay.textContent = quantidade;
+                atualizarValorProdutos(quantidade);
+            }
+        });
+
+        btnTrash.addEventListener("click", () => {
+            quantidade = 0;
+            quantityDisplay.textContent = quantidade;
+            atualizarValorProdutos(quantidade);
+        });
+    </script>
 </body>
 
 </html>

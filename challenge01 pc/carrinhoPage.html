@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de Compras</title>
+    <link rel="stylesheet" href="styleCarrinho.css">
+    <link rel="icon" type="image/iconCodi" href="imagens/iconCodi.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo-container">
+            <div class="logo-box">
+                <img src="imagens/iconCodi.png" alt="Logo">
+            </div>
+        </div>
+        <nav class="nav">
+            <a href="#"><img src="imagens/imageCarrinho.png"></i></a>
+            <a href="#"><img src="imagens/imageFav.png"></i></a>
+            <a href="#"><img src="imagens/iconPerfil.png"></i></a>
+        </nav>
+    </header>
+
+    <!-- Main -->
+    <main>
+        <h1 class="title">CARRINHO DE COMPRAS</h1>
+        <section class="cart">
+            <!-- Cabeçalhos das colunas -->
+            <div class="cart-header">
+                <p class="column-title">Itens</p>
+                <p class="column-title">Descrição</p>
+                <p class="column-title">Ações e Preço</p>
+            </div>
+            <!-- Item do carrinho -->
+            <div class="cart-item">
+                <!-- Imagem -->
+                <div class="item-image">
+                    <img src="imagens/imageProdutoTeclado01.png" alt="Teclado Mecânico">
+                </div>
+                <!-- Detalhes -->
+                <div class="item-details">
+                    <p class="item-title">Teclado Mecânico RedDragon, Preto, Entrada USB, 1500dpi</p>
+                    <p class="stock-status">Em estoque</p>
+                </div>
+                <!-- Ações e preço -->
+                <div class="item-actions">
+                    <img src="imagens/imageLixeiraPreta.png" alt="Lixeira" class="btn-trash" width="30px" height="30px">
+                    <div class="quantity">
+                        <button class="btn-minus">-</button>
+                        <input type="text" class="quantity-input" value="0" readonly>
+                        <button class="btn-plus">+</button>
+                    </div>
+                    <p class="price">R$499,90</p>
+                </div>
+            </div>
+            <div class="cart-item">
+                <!-- Imagem -->
+                <div class="item-image">
+                    <img src="imagens/imageProdutoTeclado01.png" alt="Teclado Mecânico">
+                </div>
+                <!-- Detalhes -->
+                <div class="item-details">
+                    <p class="item-title">Teclado Mecânico RedDragon, Preto, Entrada USB, 1500dpi</p>
+                    <p class="stock-status">Em estoque</p>
+                </div>
+                <!-- Ações e preço -->
+                <div class="item-actions">
+                    <img src="imagens/imageLixeiraPreta.png" alt="Lixeira" class="btn-trash" width="30px" height="30px">
+                    <div class="quantity">
+                        <button class="btn-minus">-</button>
+                        <input type="text" class="quantity-input" value="0" readonly>
+                        <button class="btn-plus">+</button>
+                    </div>
+                    <p class="price">R$499,90</p>
+                </div>
+            </div>
+            <div class="cart-item">
+                <!-- Imagem -->
+                <div class="item-image">
+                    <img src="imagens/imageProdutoTeclado01.png" alt="Teclado Mecânico">
+                </div>
+                <!-- Detalhes -->
+                <div class="item-details">
+                    <p class="item-title">Teclado Mecânico RedDragon, Preto, Entrada USB, 1500dpi</p>
+                    <p class="stock-status">Em estoque</p>
+                </div>
+                <!-- Ações e preço -->
+                <div class="item-actions">
+                    <img src="imagens/imageLixeiraPreta.png" alt="Lixeira" class="btn-trash" width="30px" height="30px">
+                    <div class="quantity">
+                        <button class="btn-minus">-</button>
+                        <input type="text" class="quantity-input" value="0" readonly>
+                        <button class="btn-plus">+</button>
+                    </div>
+                    <p class="price">R$499,90</p>
+                </div>
+            </div>
+        </section>
+        <!-- Ações -->
+        <div class="actions">
+            <button class="checkout">FECHAR PEDIDO</button>
+            <button class="add-items">ADICIONAR MAIS ITENS</button>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footerAll">
+        <div class="footerSuperior">
+            <h1><a class="linkHP" href="aboutUs.html">ABOUT US</a></h1>
+            <h1><a class="linkHP" href="aboutUs.html">HELP</a></h1>
+            <h1><a class="linkHP" href="aboutUs.html">CONTACT</a></h1>
+            <h1 class="services"><a href="aboutUs.html" style="text-decoration: none; color: inherit;">SERVICES</a>
+            </h1>
+        </div>
+        <div class="linhaBranca"></div>
+        <div class="footerInferior">
+            <h1>© 2024 Copyright: E-Commerce</h1>
+        </div>
+    </footer>
+
+    <!-- Script para funcionalidade -->
+    <script>
+        document.querySelectorAll(".btn-plus").forEach((button) => {
+            button.addEventListener("click", () => {
+                const input = button.previousElementSibling;
+                input.value = parseInt(input.value) + 1;
+            });
+        });
+
+        document.querySelectorAll(".btn-minus").forEach((button) => {
+            button.addEventListener("click", () => {
+                const input = button.nextElementSibling;
+                if (parseInt(input.value) > 0) {
+                    input.value = parseInt(input.value) - 1;
+                }
+            });
+        });
+
+        document.querySelectorAll(".btn-trash").forEach((button) => {
+            button.addEventListener("click", () => {
+                const quantityInput = button.nextElementSibling.querySelector(".quantity-input");
+                quantityInput.value = 0;
+            });
+        });
+    </script>
+</body>
+
+</html>

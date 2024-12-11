@@ -4,39 +4,59 @@ import AddFav from '../imagens/imageAddFav.png';
 import ComprarIcon from '../imagens/imageBotaoComprar.png';
 import api from '../server/api';
 import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-function Productcard({ product, imagem, disc, price, onAddToCart }) {
+function Productcard({ product, imagem, disc, price, onAddToCart, onAddToFav }) {
   const handleAddToCart = async () => {
-    if (!product || !product.id || !product.userId) {
-      console.error('Product or required details are missing.');
-      return;
-    }
+    
 
     const shoppingData = {
       productId: product.id,
-      userId: product.userId, // Assuming userId is part of the product
-      isFavorite: product.isFavorite || false,
-      isShoppingCart: true, // Assuming you want to mark this as added to cart
+      isShoppingCart: true, // Indicating the item is added to the shopping cart
     };
 
     try {
       const response = await api.post('/shoppingCart', shoppingData);
 
       console.log('Item adicionado ao carrinho:', response.data);
-
+      toast.success('Item adicionado ao carrinho');
 
       if (onAddToCart) {
         onAddToCart(response.data);
       }
     } catch (error) {
       console.error('Erro ao adicionar item ao carrinho:', error);
+      toast.error('Erro ao adicionar item ao carrinho:');
+    }
+  };
 
+  const handleAddToFav = async () => {
+    
+
+    const favData = {
+      productId: product.id,
+      isFavorite: true, // Indicating the item is added to the shopping cart
+    };
+
+    try {
+      const response = await api.post('/favorites', favData);
+
+      console.log('Item adicionado ao favorito:', response.data);
+      toast.success('Item adicionado ao favorito:');
+      if (onAddToFav) {
+        onAddToFav(response.data);
+      }
+    } catch (error) {
+      console.error('Erro ao adicionar item aos Favoritos:', error);
+      toast.error('Erro ao adicionar item aos Favoritos:');
     }
   };
 
 
   return (
     <main className="flex-grow p-8 ">
+     <ToastContainer/>
       <div className="flex justify-center">
         <div className="bg-gradient-to-b from-violet-400 to-violet-500 border border-purple-400 rounded-xl p-6 w-72 shadow-xl hover:shadow-purple-700 hover:scale-105 transition-all duration-300">
           {/* Ícones de Ações */}
@@ -51,6 +71,7 @@ function Productcard({ product, imagem, disc, price, onAddToCart }) {
               src={AddFav}
               alt="Adicionar aos favoritos"
               className="h-6 w-6 cursor-pointer hover:scale-125 hover:brightness-150 transition-all duration-200"
+              onClick={handleAddToFav}
             />
           </div>
           {/* Imagem do Produto */}
@@ -69,21 +90,22 @@ function Productcard({ product, imagem, disc, price, onAddToCart }) {
           </h2>
           {/* Botão Comprar */}
           <Link
-              to="/compras"
-              state={{ product }}
-            >
-              <button className="bg-gradient-to-br from-purple-900 to-purple-700 text-white rounded-md py-3 mt-6 w-full flex items-center justify-center gap-2 shadow-lg hover:shadow-purple-800 hover:scale-105 transition-transform duration-300">
-                <img
-                  src={ComprarIcon}
-                  alt="Ícone Comprar"
-                  className="h-5 w-5"
-                />
-                <span className="tracking-wide">VER INFORMAÇÕES</span>
-              </button>
-            </Link>
+            to="/compras"
+            state={{ product }}
+          >
+            <button className="bg-gradient-to-br from-purple-900 to-purple-700 text-white rounded-md py-3 mt-6 w-full flex items-center justify-center gap-2 shadow-lg hover:shadow-purple-800 hover:scale-105 transition-transform duration-300">
+              <img
+                src={ComprarIcon}
+                alt="Ícone Comprar"
+                className="h-5 w-5"
+              />
+              <span className="tracking-wide">VER INFORMAÇÕES</span>
+            </button>
+          </Link>
 
         </div>
       </div>
+      
     </main>
   );
 }

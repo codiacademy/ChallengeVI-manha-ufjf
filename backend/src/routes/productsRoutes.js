@@ -120,6 +120,18 @@ async function productsRoutes(router){
           return res.status(500).json({ message: 'Erro ao buscar produtos' });
         }
       });
+      router.delete('/products', async (req, res) => {
+        try {
+          // Delete all products from the database
+          const deletedProducts = await prisma.products.deleteMany();
+      
+          return res.status(200).send(deletedProducts);
+        } catch (error) {
+          console.error(error);
+          return res.status(500).send({ error: 'Failed to delete all products' });
+        }
+      });
+      
       
 
 }

@@ -2,12 +2,50 @@ const { PrismaClientRustPanicError } = require('@prisma/client/runtime/library')
 const prisma = require('../database/prisma');
 
 async function shoppingCartRoutes(router){
+  
+  // Criando rota post shoppingCart
+  router.post('/shoppingCart', async (req, res) => {
+    const {productId, isShoppingCart} = req.body;
+    
+    //Validate incoming data
+    if (!productId) {
+      return res.status(400).json({ message: 'productId are required.' });
+    }
+    await prisma.shoppingCart.create({ 
+      data: {
+        productId,
+        isShoppingCart,
+      }
+    });
+    return res.status(201).send("Product added to shoppingCart.")
+  });
+  
+  // Criando rota post favorites
+  router.post('/favorites', async (req, res) => {
+    const {productId, isFavorite} = req.body;
+    
+    //Validate incoming data
+    if (!productId) {
+      return res.status(400).json({ message: 'productId are required.' });
+    }
+    await prisma.shoppingCart.create({ 
+      data: {
+        productId,
+        isFavorite,
+      }
+    });
+    return res.status(201).send("Product added to favorites.")
+  });
+  
   // Rota para listar todos os produtos Favoritados
   router.get('/favorites', async (req, res) => {
     try {
-      const favorites = await prisma.products.findMany({
+      const favorites = await prisma.shoppingCart.findMany({
         where: {
           isFavorite: true,
+        },
+        include: {
+          product: true, // Assuming a relation exists to fetch product details
         },
       });
       return res.status(200).send(favorites);
@@ -16,74 +54,32 @@ async function shoppingCartRoutes(router){
       return res.status(500).send({ error: 'Failed to list all favorites' });
     }
   });
+  
+  // Get All Products in Shopping Cart
+  router.get('/shoppingCart', async (req, res) => {
+    try {
+      const shoppingCartItems = await prisma.shoppingCart.findMany({
+        where: {
+          isShoppingCart: true,
+        },
+        include: {
+          product: true, // Assuming a relation exists to fetch product details
+        },
+      });
 
-// Add Product to Shopping Cart
-router.post('/shoppingCart', async (req, res) => {
-  const { productId, userId, isFavorite, isShoppingCart } = req.body;
-
-  // Validate required fields
-  if (!productId || !userId) {
-    return res.status(400).json({ error: 'Product ID and User ID are required' });
-  }
-
-  try {
-    // Check if the product is already in the user's shopping cart
-    const existingCartItem = await prisma.shoppingCart.findFirst({
-      where: {
-        productId,
-        userId,
-      },
-    });
-
-    if (existingCartItem) {
-      return res.status(409).json({ message: 'Product already in the shopping cart' });
+      return res.status(200).json(shoppingCartItems);
+    } catch (error) {
+      console.error('Error fetching shopping cart:', error);
+      return res.status(500).json({ error: 'Failed to list all shopping cart items', details: error.message });
     }
-
-    // Create new shopping cart entry
-    const newShoppingCart = await prisma.shoppingCart.create({
-      data: {
-        productId,
-        userId,
-        isFavorite: isFavorite || false,
-        isShoppingCart: isShoppingCart || true,
-      },
-    });
-
-    return res.status(201).json({
-      message: 'Product added to the shopping cart',
-      shoppingCartId: newShoppingCart.id,
-    });
-  } catch (error) {
-    console.error('Error adding product to shopping cart:', error);
-    return res.status(500).json({ error: 'Internal Server Error', details: error.message });
-  }
-});
-
-// Get All Products in Shopping Cart
-router.get('/shoppingCart', async (req, res) => {
-  try {
-    const shoppingCartItems = await prisma.shoppingCart.findMany({
-      where: {
-        isShoppingCart: true,
-      },
-      include: {
-        product: true, // Assuming a relation exists to fetch product details
-      },
-    });
-
-    return res.status(200).json(shoppingCartItems);
-  } catch (error) {
-    console.error('Error fetching shopping cart:', error);
-    return res.status(500).json({ error: 'Failed to list all shopping cart items', details: error.message });
-  }
-});
+  });
 
   // Rota para excluir um produto favoritado
   router.delete('/favorites/:id', async (req, res) => {
     const { id } = req.params;
 
     try {
-      const deletedFavorite = await prisma.products.update({
+      const deletedFavorite = await prisma.shoppingCart.update({
         where: { id: Number(id) },
         data: { isFavorite: false },
       });
@@ -101,7 +97,7 @@ router.get('/shoppingCart', async (req, res) => {
     const { id } = req.params;
 
     try {
-      const deletedCartItem = await prisma.products.update({
+      const deletedCartItem = await prisma.shoppingCart.update({
         where: { id: Number(id) },
         data: { isShoppingCart: false },
       });

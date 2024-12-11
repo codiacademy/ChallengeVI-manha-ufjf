@@ -6,10 +6,7 @@ import {
   UserIcon,
   Bars3Icon,
   XMarkIcon,
-  ComputerDesktopIcon,
-  CubeIcon,
-  DevicePhoneMobileIcon,
-  
+  CubeIcon
 } from "@heroicons/react/24/outline";
 import { Link } from 'react-router-dom';
 import CodiIcon from '../imagens/iconCodi.png'
@@ -33,14 +30,14 @@ function Header() {
 
   return (
     <>
-      <header className="bg-black flex items-center justify-between p-5 text-white">
-      <div className="flex gap-6 items-center">
-        <Link to='/'>
+      <header className="bg-black flex items-center justify-between p-5 pl-2 text-white z-[9999]">
+      <div className="flex gap-2 items-center  justify-around">
+        <Link to='/' className="flex items-center">
           <img
             src={CodiIcon}
             alt="Icone do site"
             className="h-12 w-12 cursor-pointer"
-          /></Link>
+          /><p >CODI <br />COMMERCE</p></Link>
           <div className="flex items-center ps-12">
           <input
               type="text"
@@ -56,12 +53,12 @@ function Header() {
           </div>
         </div>
 
-        <div className="md:hidden flex items-center">
+        <div className="md:hidden flex items-center pl-4">
           <button onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle Menu">
             {menuOpen ? (
               <XMarkIcon className="w-6 h-6 text-white" />
             ) : (
-              <Bars3Icon className="w-6 h-6 text-white" />
+              <Bars3Icon className="w-6 h-6 text-white " />
             )}
           </button>
         </div>
@@ -79,15 +76,7 @@ function Header() {
             <XMarkIcon className="w-6 h-6 text-white" />
           </button>
           <nav className="mt-8 space-y-4">
-            <a href="#computadores" className="flex items-center hover:text-gray-400">
-              <ComputerDesktopIcon className="w-6 h-6 mr-2" /> Computadores
-            </a>
-            <a href="#celulares" className="flex items-center hover:text-gray-400">
-              <DevicePhoneMobileIcon className="w-6 h-6 mr-2" /> Celulares
-            </a>
-            <a href="#perifericos" className="flex items-center hover:text-gray-400">
-              <CubeIcon className="w-6 h-6 mr-2" /> Periféricos
-            </a>
+  
             
           </nav>
           <div className="mt-8 space-y-4">
@@ -101,31 +90,35 @@ function Header() {
             >
               <UserIcon className="w-6 h-6 mr-2" /> Login
             </button>
-            <Link to='/favorito ' className="flex items-center hover:text-gray-400">
+            <Link to='/showprodutos'  className="flex items-center hover:text-gray-400">
+              <CubeIcon className="w-6 h-6 mr-2" />Produtos
+              </Link>
+            <Link to='/favorito' className="flex items-center hover:text-gray-400">
               <HeartIcon className="w-6 h-6 mr-2" /> Favoritos
               </Link>
-            <a href="#carrinho" className="flex items-center hover:text-gray-400">
+            <Link to='/carrinho'className="flex items-center hover:text-gray-400">
               <ShoppingCartIcon className="w-6 h-6 mr-2" /> Carrinho
-            </a>
+            </Link>
+            
           </div>
         </div>
 
         <div className="hidden md:flex space-x-8 items-center">
         <Link to='/showprodutos'><h1 className="cursor-pointer">PRODUTOS</h1></Link>
           <div className="flex space-x-6 items-center">
-            <button
-              onClick={openLogin}
-              className="flex items-center hover:text-gray-400"
-            >
-              <UserIcon className="w-6 h-6 mr-2" /> Login
-            </button>
-           
+            
             <Link to='/favorito' className="flex items-center hover:text-gray-400"> 
               <HeartIcon className="w-6 h-6 mr-2" /> Favoritos
             </Link>
             <Link to="/Carrinho" className="flex items-center hover:text-gray-400">
               <ShoppingCartIcon className="w-6 h-6 mr-2" /> Carrinho
             </Link>
+            <button
+              onClick={openLogin}
+              className="flex items-center hover:text-gray-400"
+            >
+              <UserIcon className="w-6 h-6 mr-2" /> Login
+            </button>
           </div>
         </div>
       </header>

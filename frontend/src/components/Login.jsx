@@ -1,6 +1,6 @@
 import Modal from "./Modal";
 import { UserIcon, LockClosedIcon } from "@heroicons/react/24/outline";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import api from '../server/api';
 import { useState } from 'react';
@@ -23,35 +23,19 @@ function Login({ isOpen, onClose, switchToRegister }) {
     }
 
     try {
-      const response = await api.get('/user', { email, password });
+      const response = await api.post('/login', { email, password });
       if (response.status === 200) {
-        toast.success('Usuário logado com sucesso!', {
-          position: "bottom-right",
-          autoClose: 5000,
-          theme: "dark",
-        });
+        toast.success("usuario logado");
         onClose();
       }
     } catch (error) {
-      toast.error('Erro ao fazer login', {
-        position: "bottom-right",
-        autoClose: 5000,
-        theme: "dark",
-      });
+      toast.error('Erro ao fazer login');
     }
   };
 
   return (
     <>
-      <ToastContainer
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        closeOnClick
-        pauseOnHover
-        draggable
-        theme="dark"
-      />
+      
       <Modal isOpen={isOpen} onClose={onClose}>
         <h2 className="text-3xl font-bold mb-6 text-white text-center">
           Login

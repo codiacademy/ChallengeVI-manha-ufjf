@@ -6,6 +6,7 @@ import api from '../server/api';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import { ToastContainer, toast } from 'react-toastify';
 
 function ShowProdutos() {
   const [products, setProducts] = useState([]);
@@ -68,6 +69,8 @@ function ShowProdutos() {
             imagem={product.imageURL}
             disc={product.description}
             price={`R$ ${product.price.toFixed(2)}`}
+            onAddToCart={(item) => console.log("Item adicionado ao carrinho:", item)}
+            onAddToFav={(item) => console.log("Item adicionado aos favoritos:", item)}
           />
         ))}
       </div>
@@ -76,29 +79,50 @@ function ShowProdutos() {
   );
 }
 
-function Productcard({ product, imagem, disc, price, onAddToCart }) {
+function Productcard({ product, imagem, disc, price, onAddToCart, onAddToFav }) {
   const handleAddToCart = async () => {
-    if (!product || !product.id || !product.userId) {
-      console.error('Product or required details are missing.');
-      return;
-    }
+    
 
     const shoppingData = {
       productId: product.id,
-      userId: product.userId,
-      isFavorite: product.isFavorite || false,
-      isShoppingCart: true,
+      isShoppingCart: true, // Indicating the item is added to the shopping cart
     };
 
     try {
       const response = await api.post('/shoppingCart', shoppingData);
+
       console.log('Item adicionado ao carrinho:', response.data);
+      toast.success('Item adicionado ao carrinho');
 
       if (onAddToCart) {
         onAddToCart(response.data);
       }
     } catch (error) {
       console.error('Erro ao adicionar item ao carrinho:', error);
+      toast.error('Erro ao adicionar item ao carrinho');
+    }
+  };
+
+  const handleAddToFav = async () => {
+    
+
+    const favData = {
+      productId: product.id,
+      isFavorite: true, // Indicating the item is added to the shopping cart
+    };
+
+    try {
+      const response = await api.post('/favorites', favData);
+
+      console.log('Item adicionado ao favorito:', response.data);
+      toast.success('Item adicionado ao favorito:');
+
+      if (onAddToFav) {
+        onAddToFav(response.data);
+      }
+    } catch (error) {
+      console.error('Erro ao adicionar item aos Favoritos:', error);
+      toast.error('Erro ao adicionar item aos Favoritos');
     }
   };
 
@@ -118,6 +142,7 @@ function Productcard({ product, imagem, disc, price, onAddToCart }) {
               src={AddFav}
               alt="Adicionar aos favoritos"
               className="h-6 w-6 cursor-pointer hover:scale-125 hover:brightness-150 transition-all duration-200"
+              onClick={handleAddToFav}
             />
           </div>
           {/* Imagem do Produto */}

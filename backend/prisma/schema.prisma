@@ -25,16 +25,15 @@ model users {
   lastName     String
   phone        String?
   createdAt    DateTime?      @default(now())
-  shoppingCart shoppingCart[]
+
 }
 
 model shoppingCart {
   id             Int     @id @unique @default(autoincrement())
-  userId         Int 
   productId      Int
-  isFavorite     Boolean
+  isFavorite     Boolean @default(false)
   isShoppingCart Boolean @default(false)
 
-  user    users    @relation(fields: [userId], references: [id])
+
   product products @relation(fields: [productId], references: [id])
 }

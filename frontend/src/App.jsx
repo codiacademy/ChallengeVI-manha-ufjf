@@ -7,8 +7,12 @@ import Compras from "./pages/Compras";
 import ShowProdutos from "./pages/ShowProdutos";
 import Checkout from "./pages/Checkout";
 import Favorito from "./pages/Favorito";
+import PaymentPage from "./pages/PaymentPage";
+import { ToastContainer } from "react-toastify";
+
 function App() {
   return (
+    
     <Router>
       <Routes>
         <Route path='/'element={<HomePage/>}/>
@@ -19,7 +23,9 @@ function App() {
         <Route path='/showprodutos'element={<ShowProdutos/>}/>
         <Route path='/checkout'element={<Checkout/>}/>
         <Route path='/favorito'element={<Favorito/>}/>
+        <Route path='/payment'element={<PaymentPage/>}/>
       </Routes>
+      <ToastContainer/>
     </Router>
     
   );

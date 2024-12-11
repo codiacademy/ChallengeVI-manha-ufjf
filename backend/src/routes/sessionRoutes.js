@@ -25,7 +25,7 @@ async function sessionRoutes(router){
 
             try {
                 //compare hashed password with the provided password
-                const isPasswordCorrect = await bcrypt.compare(password, users.password_hash);
+                const isPasswordCorrect = await bcrypt.compare(password, users.password);
 
                 if (!isPasswordCorrect) {
                     return res.status(401).json({ message: 'Invalid credential.' });

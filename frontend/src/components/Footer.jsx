@@ -7,9 +7,9 @@ function Footer() {
       {/* Seção de links de navegação */}
       <div className="flex flex-wrap justify-center gap-8 px-6 py-4 ">
         <Link to='/aboutus' className="cursor-pointer hover:text-purple-300 transition-colors duration-300">ABOUT US</Link>
-        <Link to='/help' className="cursor-pointer hover:text-purple-300 transition-colors duration-300">HELP</Link>
-        <Link to='/contact' className="cursor-pointer hover:text-purple-300 transition-colors duration-300">CONTACT</Link>
-        <Link to='/services' className="cursor-pointer hover:text-purple-300 transition-colors duration-300">SERVICES</Link>
+        <Link to='/aboutus' className="cursor-pointer hover:text-purple-300 transition-colors duration-300">HELP</Link>
+        <Link to='/aboutus' className="cursor-pointer hover:text-purple-300 transition-colors duration-300">CONTACT</Link>
+        <Link to='/aboutus' className="cursor-pointer hover:text-purple-300 transition-colors duration-300">SERVICES</Link>
       </div>
 
       {/* Linha separadora */}

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Modal from "./Modal";
 import { UserIcon, LockClosedIcon, PencilSquareIcon, PhoneIcon } from "@heroicons/react/24/outline";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer ,toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import api from '../server/api';
 
@@ -26,33 +26,17 @@ function Register({ isOpen, onClose, switchToLogin }) {
     try {
       const response = await api.post('/register', { firstName, lastName, email, password, phone });
       if (response.status === 201) {
-        toast.success('Usuário cadastrado com sucesso!', {
-          position: "bottom-right",
-          autoClose: 5000,
-          theme: "dark",
-        });
+        toast.success('Usuário cadastrado com sucesso!',);
         onClose();
       }
     } catch (error) {
-      toast.error('Erro ao cadastrar usuário!', {
-        position: "bottom-right",
-        autoClose: 5000,
-        theme: "dark",
-      });
+      toast.error('Erro ao cadastrar usuário!');
     }
   };
 
   return (
     <>
-      <ToastContainer
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        closeOnClick
-        pauseOnHover
-        draggable
-        theme="dark"
-      />
+
       <Modal isOpen={isOpen} onClose={onClose}>
         <h2 className="text-3xl font-bold mb-6 text-white text-center">
           Registre-se
@@ -134,6 +118,7 @@ function Register({ isOpen, onClose, switchToLogin }) {
           </button>
         </p>
       </Modal>
+      
     </>
   );
 }
